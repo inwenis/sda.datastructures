@@ -57,7 +57,20 @@ public class LinkedList implements SdaList {
     }
 
     public void removeLast() {
-
+        if(head == null) {
+            return;
+        } else if (head.next == null) {
+            head = null;
+            return;
+        } else {
+            Node traveler = head;
+            // we use .next.next here cuz we need to get the "preLast" node
+            while (traveler.next.next != null) {
+                traveler = traveler.next;
+            }
+            traveler.next = null;
+            return;
+        }
     }
 
     public void setAt(int index, int element) {

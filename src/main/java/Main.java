@@ -9,6 +9,26 @@ public class Main {
 
         System.out.println("testing removeFirst()");
         removeFirstTest();
+
+        System.out.println("testing removeLast()");
+        removeLastTest();
+    }
+
+    private static void removeLastTest() {
+        LinkedList list = new LinkedList();
+        System.out.println("\t" + list.toCoolString() + " expected: empty");
+        list.removeLast();
+        System.out.println("\t" + list.toCoolString() + " expected: empty");
+        list.addFirst(1);
+        list.addFirst(2);
+        System.out.println("\t" + list.toCoolString() + " expected: 2, 1");
+        list.removeLast();
+        System.out.println("\t" + list.toCoolString() + " expected: 2");
+        list.removeLast();
+        System.out.println("\t" + list.toCoolString() + " expected: empty");
+        // let's test if after removing all elements we can add elements again
+        list.addFirst(10);
+        System.out.println("\t" + list.toCoolString() + " expected: 10");
     }
 
     private static void removeFirstTest() {
