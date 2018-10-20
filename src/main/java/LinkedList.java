@@ -77,11 +77,8 @@ public class LinkedList implements SdaList {
         if (head == null) {
             head = new Node(element);
         } else {
-            Node traveler = head;
-            while (traveler.next != null) {
-                traveler = traveler.next;
-            }
-            traveler.next = new Node(element);
+            Node last = getNodeAt(size() - 1).get();
+            last.next = new Node(element);
         }
     }
 
@@ -100,12 +97,8 @@ public class LinkedList implements SdaList {
             head = null;
             return;
         } else {
-            Node traveler = head;
-            // we use .next.next here cuz we need to get the "preLast" node
-            while (traveler.next.next != null) {
-                traveler = traveler.next;
-            }
-            traveler.next = null;
+            Node preLast = getNodeAt(size() - 2).get();
+            preLast.next = null;
             return;
         }
     }
@@ -127,12 +120,10 @@ public class LinkedList implements SdaList {
             return "empty";
         } else {
             String listAsString = "";
-            Node travler = head;
-            do {
-                listAsString += travler.value + " -> ";
-                listAsString += travler.next == null ? "null" : "";
-                travler = travler.next;
-            } while(travler != null);
+            for (int i = 0; i < size(); i++) {
+                listAsString += get(i) + " -> ";
+            }
+            listAsString += "null";
             return listAsString;
         }
     }
