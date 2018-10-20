@@ -18,6 +18,9 @@ public class Main {
 
         System.out.println("testing get()");
         getTest();
+
+        System.out.println("testing isEmpty()");
+        isEmptyTest();
     }
 
     private static void getTest() {
@@ -102,5 +105,14 @@ public class Main {
         list.addLast(3);
         System.out.println("\t" + list.toCoolString() + " expected: 1,2,3");
         list.addLast(4);
+    }
+
+    private static void isEmptyTest() {
+        LinkedList list = new LinkedList();
+        System.out.println("\t" + list.isEmpty() + " expected: true");
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        System.out.println("\t" + list.isEmpty() + " expected: false");
     }
 }

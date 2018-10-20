@@ -5,7 +5,7 @@ public class LinkedList implements SdaList {
     private Node head;
 
     public boolean isEmpty() {
-        return false;
+        return size() == 0;
     }
 
     public int size() {
