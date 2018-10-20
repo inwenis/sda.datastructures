@@ -117,7 +117,12 @@ public class LinkedList implements SdaList {
     }
 
     public void setAt(int index, int element) {
-
+        Optional<Node> nodeOptional = getNodeAt(index);
+        if (nodeOptional.isPresent()) {
+            nodeOptional.get().value = element;
+        } else {
+            // TODO should we do something here?
+        }
     }
 
     public void addAt(int index, int element) {

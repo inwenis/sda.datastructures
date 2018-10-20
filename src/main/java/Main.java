@@ -30,6 +30,23 @@ public class Main {
 
         System.out.println("testing clear()");
         clearTest();
+
+        System.out.println("testing setAt()");
+        setAtTest();
+    }
+
+    private static void setAtTest() {
+        LinkedList list = new LinkedList();
+        list.setAt(5, 10);
+        list.addLast(1);
+        System.out.println("\t" + list.toCoolString() + " expected: 1");
+        list.setAt(0, 10);
+        System.out.println("\t" + list.toCoolString() + " expected: 10");
+        list.addLast(2);
+        list.addLast(3);
+        System.out.println("\t" + list.toCoolString() + " expected: 10,2,3");
+        list.setAt(1, 42);
+        System.out.println("\t" + list.toCoolString() + " expected: 10,42,3");
     }
 
     private static void clearTest() {
