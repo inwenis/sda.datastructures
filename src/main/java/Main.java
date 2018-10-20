@@ -27,6 +27,19 @@ public class Main {
 
         System.out.println("testing getLast()");
         getLastTest();
+
+        System.out.println("testing clear()");
+        clearTest();
+    }
+
+    private static void clearTest() {
+        LinkedList list = new LinkedList();
+        list.clear();
+        list.addLast(5);
+        list.addLast(10);
+        System.out.println("\t" + list.toCoolString() + " expected 5,10");
+        list.clear();
+        System.out.println("\t" + list.toCoolString() + " expected empty");
     }
 
     private static void getFirstTest() {

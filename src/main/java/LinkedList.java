@@ -73,7 +73,7 @@ public class LinkedList implements SdaList {
     }
 
     public void clear() {
-
+        head = null;
     }
 
     public void addFirst(int element) {
