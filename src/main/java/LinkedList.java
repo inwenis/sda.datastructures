@@ -27,7 +27,13 @@ public class LinkedList implements SdaList {
     }
 
     public void addFirst(int element) {
-
+        if(head == null) {
+            head = new Node(element);
+        } else {
+            Node newHead = new Node(element);
+            newHead.next = head;
+            head = newHead;
+        }
     }
 
     public void addLast(int element) {
