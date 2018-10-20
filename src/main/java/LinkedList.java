@@ -49,7 +49,11 @@ public class LinkedList implements SdaList {
     }
 
     public void removeFirst() {
-
+        if(head == null) {
+            return;
+        } else {
+            head = head.next;
+        }
     }
 
     public void removeLast() {
