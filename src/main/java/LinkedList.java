@@ -7,7 +7,19 @@ public class LinkedList implements SdaList {
     }
 
     public int size() {
-        return 0;
+        if(head == null) {
+            return 0;
+        } else if (head.next == null) {
+            return 1;
+        } else {
+            int count = 1;
+            Node traveler = head;
+            while (traveler.next != null) {
+                traveler = traveler.next;
+                count++;
+            }
+            return count;
+        }
     }
 
     public int getFirst() {
@@ -19,7 +31,13 @@ public class LinkedList implements SdaList {
     }
 
     public int get(int index) {
+        // use a private method that gets the Node at index as opposed to just the value
+        //Node selected = getNodeAt(index);
         return 0;
+    }
+
+    private Node getNodeAt(int index) {
+        return null;
     }
 
     public void clear() {

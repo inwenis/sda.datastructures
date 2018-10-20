@@ -12,6 +12,27 @@ public class Main {
 
         System.out.println("testing removeLast()");
         removeLastTest();
+
+        System.out.println("testing size()");
+        sizeTest();
+    }
+
+    private static void sizeTest() {
+        LinkedList list = new LinkedList();
+        System.out.println("\t" + list.toCoolString());
+        System.out.println("\t" + list.size() + " expected: 0");
+        list.addFirst(1);
+        list.addFirst(2);
+        System.out.println("\t" + list.toCoolString());
+        System.out.println("\t" + list.size() + " expected: 2");
+        list.removeLast();
+        System.out.println("\t" + list.toCoolString());
+        System.out.println("\t" + list.size() + " expected: 1");
+        list.addFirst(1);
+        list.addFirst(2);
+        list.addFirst(3);
+        System.out.println("\t" + list.toCoolString());
+        System.out.println("\t" + list.size() + " expected: 4");
     }
 
     private static void removeLastTest() {
