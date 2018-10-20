@@ -34,7 +34,13 @@ public class LinkedList implements SdaList {
     }
 
     public int getLast() {
-        return 0;
+        Optional<Node> optionalLast = getNodeAt(size() - 1);
+        if (optionalLast.isPresent()) {
+            return optionalLast.get().value;
+        } else {
+            // TODO throw exception here?
+            return -1;
+        }
     }
 
     public int get(int index) {
@@ -51,7 +57,9 @@ public class LinkedList implements SdaList {
     }
 
     private Optional<Node> getNodeAt(int index) {
-        if(index > size() - 1) {
+        if (index < 0) {
+            return Optional.empty();
+        } else if(index > size() - 1) {
             return Optional.empty();
         } else {
             int currentTravlerIndex = 0;

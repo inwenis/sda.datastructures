@@ -24,6 +24,9 @@ public class Main {
 
         System.out.println("testing getFirst()");
         getFirstTest();
+
+        System.out.println("testing getLast()");
+        getLastTest();
     }
 
     private static void getFirstTest() {
@@ -126,5 +129,16 @@ public class Main {
         list.addLast(2);
         list.addLast(3);
         System.out.println("\t" + list.isEmpty() + " expected: false");
+    }
+
+    public static void getLastTest() {
+        LinkedList list = new LinkedList();
+        System.out.println("\t" + list.getLast() + " expected: -1");
+        list.addLast(1);
+        System.out.println("\t" + list.getLast() + " expected: 1");
+        list.addLast(2);
+        System.out.println("\t" + list.getLast() + " expected: 2");
+        list.addLast(3);
+        System.out.println("\t" + list.getLast() + " expected: 3");
     }
 }
