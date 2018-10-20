@@ -126,7 +126,27 @@ public class LinkedList implements SdaList {
     }
 
     public void addAt(int index, int element) {
+        if (index < 0) {
+            // TODO should we throw here?
+            return;
+        }
+        if (index > 0 && index > size()) {
+            // we can always insert an item at index 0 and (size - 1)
+            // TODO should we throw here?
+            return;
+        }
 
+        if (index == 0) {
+            addFirst(element);
+        } else if (index == size() - 1) {
+            addLast(element);
+        } else {
+            Node left = getNodeAt(index - 1).get();
+            Node right = left.next;
+            Node newNode = new Node(element);
+            left.next = newNode;
+            newNode.next = right;
+        }
     }
 
     public void removeAt(int index) {
