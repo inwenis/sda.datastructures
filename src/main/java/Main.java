@@ -21,6 +21,18 @@ public class Main {
 
         System.out.println("testing isEmpty()");
         isEmptyTest();
+
+        System.out.println("testing getFirst()");
+        getFirstTest();
+    }
+
+    private static void getFirstTest() {
+        LinkedList list = new LinkedList();
+        list.addLast(5);
+        list.addLast(10);
+        System.out.println("\t" + list.getFirst() + " expected 5");
+        list.addFirst(1);
+        System.out.println("\t" + list.getFirst() + " expected 1");
     }
 
     private static void getTest() {

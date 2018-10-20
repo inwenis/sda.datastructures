@@ -25,7 +25,12 @@ public class LinkedList implements SdaList {
     }
 
     public int getFirst() {
-        return 0;
+        if(head == null) {
+            // TODO throw exception here?
+            return -1;
+        } else {
+            return head.value;
+        }
     }
 
     public int getLast() {
