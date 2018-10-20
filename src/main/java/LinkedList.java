@@ -1,4 +1,7 @@
 public class LinkedList implements SdaList {
+
+    private Node head;
+
     public boolean isEmpty() {
         return false;
     }
@@ -28,7 +31,15 @@ public class LinkedList implements SdaList {
     }
 
     public void addLast(int element) {
-
+        if (head == null) {
+            head = new Node(element);
+        } else {
+            Node traveler = head;
+            while (traveler.next != null) {
+                traveler = traveler.next;
+            }
+            traveler.next = new Node(element);
+        }
     }
 
     public void removeFirst() {
@@ -49,5 +60,29 @@ public class LinkedList implements SdaList {
 
     public void removeAt(int index) {
 
+    }
+
+    public String toCoolString() {
+        if(head == null) {
+            return "empty";
+        } else {
+            String listAsString = "";
+            Node travler = head;
+            do {
+                listAsString += travler.value + " -> ";
+                listAsString += travler.next == null ? "null" : "";
+                travler = travler.next;
+            } while(travler != null);
+            return listAsString;
+        }
+    }
+
+    class Node {
+        public int value;
+        public Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
     }
 }
