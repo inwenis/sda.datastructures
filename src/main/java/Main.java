@@ -15,6 +15,25 @@ public class Main {
 
         System.out.println("testing size()");
         sizeTest();
+
+        System.out.println("testing get()");
+        getTest();
+    }
+
+    private static void getTest() {
+        LinkedList list = new LinkedList();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.addLast(5);
+        list.addLast(10);
+        System.out.println("\t" + list.toCoolString());
+        System.out.println("\t" + list.get(0) + " expected 1");
+        System.out.println("\t" + list.get(1) + " expected 2");
+        System.out.println("\t" + list.get(2) + " expected 3");
+        System.out.println("\t" + list.get(5) + " expected 10");
+        System.out.println("\t" + list.get(100) + " expected -1");
     }
 
     private static void sizeTest() {

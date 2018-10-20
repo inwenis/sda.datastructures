@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class LinkedList implements SdaList {
 
     private Node head;
@@ -32,12 +34,29 @@ public class LinkedList implements SdaList {
 
     public int get(int index) {
         // use a private method that gets the Node at index as opposed to just the value
-        //Node selected = getNodeAt(index);
-        return 0;
+        Optional<Node> selected = getNodeAt(index);
+        if (selected.isPresent()) {
+            Node node = selected.get();
+            return node.value;
+        }
+        else {
+            // TODO we should probably throw here
+            return -1;
+        }
     }
 
-    private Node getNodeAt(int index) {
-        return null;
+    private Optional<Node> getNodeAt(int index) {
+        if(index > size() - 1) {
+            return Optional.empty();
+        } else {
+            int currentTravlerIndex = 0;
+            Node traveler = head;
+            while (currentTravlerIndex != index) {
+                traveler = traveler.next;
+                currentTravlerIndex++;
+            }
+            return Optional.of(traveler);
+        }
     }
 
     public void clear() {
