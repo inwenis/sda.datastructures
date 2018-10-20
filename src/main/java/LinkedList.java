@@ -62,11 +62,11 @@ public class LinkedList implements SdaList {
         } else if(index > size() - 1) {
             return Optional.empty();
         } else {
-            int currentTravlerIndex = 0;
+            int currentTravelerIndex = 0;
             Node traveler = head;
-            while (currentTravlerIndex != index) {
+            while (currentTravelerIndex != index) {
                 traveler = traveler.next;
-                currentTravlerIndex++;
+                currentTravelerIndex++;
             }
             return Optional.of(traveler);
         }
