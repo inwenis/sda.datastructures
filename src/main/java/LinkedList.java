@@ -120,7 +120,8 @@ public class LinkedList implements SdaList {
         if (nodeOptional.isPresent()) {
             nodeOptional.get().value = element;
         } else {
-            // TODO should we do something here?
+            String message = "an element with index: " + index + " could not be found in the list. size() = " + size();
+            throw new IndexOutOfBoundsException(message);
         }
     }
 
