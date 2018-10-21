@@ -253,7 +253,7 @@ public class Main {
             list.removeFirst();
             System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (NoSuchElementException e) {
-            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\texpected to catch NoSuchElementException, and in deed we caught it!");
             System.out.println("\there is the message: " + e.getMessage() );
         }
     }
