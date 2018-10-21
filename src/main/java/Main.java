@@ -120,7 +120,6 @@ public class Main {
             System.out.println("expected to catch NoSuchElementException, and in deed we caught it!");
             System.out.println("here is the message: " + e.getMessage() );
         }
-
     }
 
     private static void getTest() {
@@ -218,12 +217,21 @@ public class Main {
 
     public static void getLastTest() {
         LinkedList list = new LinkedList();
-        System.out.println("\t" + list.getLast() + " expected: -1");
         list.addLast(1);
         System.out.println("\t" + list.getLast() + " expected: 1");
         list.addLast(2);
         System.out.println("\t" + list.getLast() + " expected: 2");
         list.addLast(3);
         System.out.println("\t" + list.getLast() + " expected: 3");
+
+        LinkedList emptyList = new LinkedList();
+        try {
+            int first = emptyList.getLast();
+            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+        } catch (NoSuchElementException e) {
+            System.out.println("expected to catch NoSuchElementException, and in deed we caught it!");
+            System.out.println("here is the message: " + e.getMessage() );
+        }
+
     }
 }

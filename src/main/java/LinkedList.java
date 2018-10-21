@@ -38,8 +38,7 @@ public class LinkedList implements SdaList {
         if (optionalLast.isPresent()) {
             return optionalLast.get().value;
         } else {
-            // TODO throw exception here?
-            return -1;
+            throw new NoSuchElementException("You can not get the last element from an empty list.");
         }
     }
 
