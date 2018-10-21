@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class Main {
     public static void main(String[] args) {
         // declare list as LinkedList instead of SdaList to use .toCoolString()
@@ -110,6 +112,15 @@ public class Main {
         System.out.println("\t" + list.getFirst() + " expected 5");
         list.addFirst(1);
         System.out.println("\t" + list.getFirst() + " expected 1");
+        LinkedList emptyList = new LinkedList();
+        try {
+            int first = emptyList.getFirst();
+            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+        } catch (NoSuchElementException e) {
+            System.out.println("expected to catch NoSuchElementException, and in deed we caught it!");
+            System.out.println("here is the message: " + e.getMessage() );
+        }
+
     }
 
     private static void getTest() {

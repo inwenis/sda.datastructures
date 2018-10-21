@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class LinkedList implements SdaList {
@@ -26,8 +27,7 @@ public class LinkedList implements SdaList {
 
     public int getFirst() {
         if(head == null) {
-            // TODO throw exception here?
-            return -1;
+            throw new NoSuchElementException("You can not get the first element from an empty list.");
         } else {
             return head.value;
         }
