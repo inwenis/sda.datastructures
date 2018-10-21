@@ -161,6 +161,9 @@ public class LinkedList implements SdaList {
             removeLast();
         } else if (optionNext.isPresent()) {
             removeFirst();
+        } else {
+            String message = "Can not remove element at index " + index + " as it is out of bound. size() = " + size();
+            throw new IndexOutOfBoundsException(message);
         }
     }
 

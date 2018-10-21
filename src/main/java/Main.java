@@ -49,10 +49,29 @@ public class Main {
     private static void removeAtTest() {
         LinkedList list = new LinkedList();
         System.out.println("\t" + list.toCoolString() + " expected: empty");
-        list.removeAt(0);
-        list.removeAt(1);
-        list.removeAt(-1);
-        list.removeAt(100);
+        try {
+            list.removeAt(0);
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
+        }
+
+        try {
+            list.removeAt(1);
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
+        }
+
+        try {
+            list.removeAt(-5);
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
+        }
         System.out.println("\t" + list.toCoolString() + " expected: empty");
         list.addLast(1);
         list.addLast(2);
@@ -63,6 +82,14 @@ public class Main {
         System.out.println("\t" + list.toCoolString() + " expected: 2,3,4");
         list.removeAt(1);
         System.out.println("\t" + list.toCoolString() + " expected: 2,4");
+
+        try {
+            list.removeAt(10);
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
+        }
     }
 
     private static void addAtTest() {
