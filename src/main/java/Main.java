@@ -191,8 +191,6 @@ public class Main {
     private static void removeLastTest() {
         LinkedList list = new LinkedList();
         System.out.println("\t" + list.toCoolString() + " expected: empty");
-        list.removeLast();
-        System.out.println("\t" + list.toCoolString() + " expected: empty");
         list.addFirst(1);
         list.addFirst(2);
         System.out.println("\t" + list.toCoolString() + " expected: 2, 1");
@@ -200,6 +198,15 @@ public class Main {
         System.out.println("\t" + list.toCoolString() + " expected: 2");
         list.removeLast();
         System.out.println("\t" + list.toCoolString() + " expected: empty");
+
+        try {
+            list.removeLast();
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
+        } catch (NoSuchElementException e) {
+            System.out.println("\texpected to catch NoSuchElementException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
+        }
+
         // let's test if after removing all elements we can add elements again
         list.addFirst(10);
         System.out.println("\t" + list.toCoolString() + " expected: 10");

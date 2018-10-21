@@ -104,7 +104,7 @@ public class LinkedList implements SdaList {
 
     public void removeLast() {
         if(head == null) {
-            return;
+            throw new NoSuchElementException("Can not remove last element from an empty list.");
         } else if (head.next == null) {
             head = null;
             return;
