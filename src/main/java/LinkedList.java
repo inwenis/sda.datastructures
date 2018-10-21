@@ -127,13 +127,13 @@ public class LinkedList implements SdaList {
 
     public void addAt(int index, int element) {
         if (index < 0) {
-            // TODO should we throw here?
-            return;
+            String message = "Can not add element at negative index " + index;
+            throw new IndexOutOfBoundsException(message);
         }
-        if (index > 0 && index > size()) {
-            // we can always insert an item at index 0 and (size - 1)
-            // TODO should we throw here?
-            return;
+        if (index > size()) {
+            String message = "Can not add element at index " + index +
+                    " as there is no predecessor for it. size() = " + size();
+            throw new IndexOutOfBoundsException(message);
         }
 
         if (index == 0) {

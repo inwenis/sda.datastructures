@@ -67,10 +67,6 @@ public class Main {
 
     private static void addAtTest() {
         LinkedList list = new LinkedList();
-        list.addAt(-10, 5);
-        System.out.println("\t" + list.toCoolString() + " expected: empty");
-        list.addAt(100, 5);
-        System.out.println("\t" + list.toCoolString() + " expected: empty");
         list.addAt(0, 5);
         System.out.println("\t" + list.toCoolString() + " expected: 5");
         list.addAt(0, 10);
@@ -79,6 +75,22 @@ public class Main {
         System.out.println("\t" + list.toCoolString() + " expected: 10,5,20");
         list.addAt(1, 42);
         System.out.println("\t" + list.toCoolString() + " expected: 10,42,5,20");
+
+        try {
+            list.addAt(-10, 5);
+            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("here is the message: " + e.getMessage() );
+        }
+
+        try {
+            list.addAt(100, 5);
+            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+        } catch(IndexOutOfBoundsException e) {
+            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("here is the message: " + e.getMessage() );
+        }
     }
 
     private static void setAtTest() {
