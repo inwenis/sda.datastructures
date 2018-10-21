@@ -208,8 +208,6 @@ public class Main {
     private static void removeFirstTest() {
         LinkedList list = new LinkedList();
         System.out.println("\t" + list.toCoolString() + " expected: empty");
-        list.removeFirst();
-        System.out.println("\t" + list.toCoolString() + " expected: empty");
         list.addFirst(1);
         list.addFirst(2);
         System.out.println("\t" + list.toCoolString() + " expected: 2, 1");
@@ -217,6 +215,13 @@ public class Main {
         System.out.println("\t" + list.toCoolString() + " expected: 1");
         list.removeFirst();
         System.out.println("\t" + list.toCoolString() + " expected: empty");
+        try {
+            list.removeFirst();
+            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+        } catch (NoSuchElementException e) {
+            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("here is the message: " + e.getMessage() );
+        }
     }
 
     private static void addFirstTest() {

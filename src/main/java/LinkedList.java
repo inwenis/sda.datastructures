@@ -96,7 +96,7 @@ public class LinkedList implements SdaList {
 
     public void removeFirst() {
         if(head == null) {
-            return;
+            throw new NoSuchElementException("Can not remove first element from an empty list.");
         } else {
             head = head.next;
         }
@@ -132,7 +132,7 @@ public class LinkedList implements SdaList {
         }
         if (index > size()) {
             String message = "Can not add element at index " + index +
-                    " as there is no predecessor for it. size() = " + size();
+                        " as there is no predecessor for it. size() = " + size();
             throw new IndexOutOfBoundsException(message);
         }
 
