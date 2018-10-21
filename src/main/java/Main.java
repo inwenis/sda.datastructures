@@ -135,7 +135,13 @@ public class Main {
         System.out.println("\t" + list.get(1) + " expected 2");
         System.out.println("\t" + list.get(2) + " expected 3");
         System.out.println("\t" + list.get(5) + " expected 10");
-        System.out.println("\t" + list.get(100) + " expected -1");
+        try {
+            list.get(100);
+            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("here is the message: " + e.getMessage() );
+        }
     }
 
     private static void sizeTest() {

@@ -50,8 +50,8 @@ public class LinkedList implements SdaList {
             return node.value;
         }
         else {
-            // TODO we should probably throw here
-            return -1;
+            String message = "an element with index: " + index + " could not be found in the list. size() = " + size();
+            throw new IndexOutOfBoundsException(message);
         }
     }
 
