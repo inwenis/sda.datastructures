@@ -78,18 +78,18 @@ public class Main {
 
         try {
             list.addAt(-10, 5);
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch(IndexOutOfBoundsException e) {
-            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
 
         try {
             list.addAt(100, 5);
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch(IndexOutOfBoundsException e) {
-            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
     }
 
@@ -106,18 +106,18 @@ public class Main {
         System.out.println("\t" + list.toCoolString() + " expected: 10,42,3");
         try {
             list.setAt(100, 42);
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
 
         try {
             list.setAt(-1, 42);
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
     }
 
@@ -141,10 +141,10 @@ public class Main {
         LinkedList emptyList = new LinkedList();
         try {
             int first = emptyList.getFirst();
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (NoSuchElementException e) {
-            System.out.println("expected to catch NoSuchElementException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch NoSuchElementException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
     }
 
@@ -163,10 +163,10 @@ public class Main {
         System.out.println("\t" + list.get(5) + " expected 10");
         try {
             list.get(100);
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
     }
 
@@ -217,10 +217,10 @@ public class Main {
         System.out.println("\t" + list.toCoolString() + " expected: empty");
         try {
             list.removeFirst();
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (NoSuchElementException e) {
-            System.out.println("expected to catch IndexOutOfBoundsException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
     }
 
@@ -264,10 +264,10 @@ public class Main {
         LinkedList emptyList = new LinkedList();
         try {
             int first = emptyList.getLast();
-            System.out.println("the line above should throw an exception and we should not see this message, never ever.");
+            System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
         } catch (NoSuchElementException e) {
-            System.out.println("expected to catch NoSuchElementException, and in deed we caught it!");
-            System.out.println("here is the message: " + e.getMessage() );
+            System.out.println("\texpected to catch NoSuchElementException, and in deed we caught it!");
+            System.out.println("\there is the message: " + e.getMessage() );
         }
 
     }
