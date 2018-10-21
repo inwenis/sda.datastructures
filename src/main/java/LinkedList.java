@@ -150,7 +150,18 @@ public class LinkedList implements SdaList {
     }
 
     public void removeAt(int index) {
-
+        Optional<Node> optionalPrevious = getNodeAt(index - 1);
+        Optional<Node> optionNext = getNodeAt(index + 1);
+        if(optionalPrevious.isPresent() && optionNext.isPresent()) {
+            // removing from middle of list
+            Node previous = optionalPrevious.get();
+            Node next = optionNext.get();
+            previous.next = next;
+        } else if (optionalPrevious.isPresent()) {
+            removeLast();
+        } else if (optionNext.isPresent()) {
+            removeFirst();
+        }
     }
 
     public String toCoolString() {

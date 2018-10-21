@@ -39,6 +39,28 @@ public class Main {
 
         System.out.println("testing addAt()");
         addAtTest();
+
+        System.out.println("testing removeAt()");
+        removeAtTest();
+    }
+
+    private static void removeAtTest() {
+        LinkedList list = new LinkedList();
+        System.out.println("\t" + list.toCoolString() + " expected: empty");
+        list.removeAt(0);
+        list.removeAt(1);
+        list.removeAt(-1);
+        list.removeAt(100);
+        System.out.println("\t" + list.toCoolString() + " expected: empty");
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        System.out.println("\t" + list.toCoolString() + " expected: 1,2,3,4");
+        list.removeAt(0);
+        System.out.println("\t" + list.toCoolString() + " expected: 2,3,4");
+        list.removeAt(1);
+        System.out.println("\t" + list.toCoolString() + " expected: 2,4");
     }
 
     private static void addAtTest() {
