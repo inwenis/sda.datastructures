@@ -107,16 +107,16 @@ public class Main {
         try {
             list.setAt(100, 42);
             System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+        } catch (NoSuchElementException e) {
+            System.out.println("\texpected to catch NoSuchElementException, and in deed we caught it!");
             System.out.println("\there is the message: " + e.getMessage() );
         }
 
         try {
             list.setAt(-1, 42);
             System.out.println("\tthe line above should throw an exception and we should not see this message, never ever.");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("\texpected to catch IndexOutOfBoundsException, and in deed we caught it!");
+        } catch (NoSuchElementException e) {
+            System.out.println("\texpected to catch NoSuchElementException, and in deed we caught it!");
             System.out.println("\there is the message: " + e.getMessage() );
         }
     }
