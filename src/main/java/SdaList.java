@@ -62,6 +62,8 @@ public interface SdaList {
 
     /**
      * Zamienia element pod podanym indeksem.
+     *
+     * @throws NoSuchElementException jeśli element o podanym indeksie nie istnieje
      */
     void setAt(int index, int element);
 
