@@ -10,6 +10,10 @@ public class Stack {
     public void push(int i) {
         if(head == null) {
             head = new Node(i);
+        } else {
+            Node node = new Node(i);
+            node.next = head;
+            head = node;
         }
     }
 
@@ -18,9 +22,8 @@ public class Stack {
             return Optional.empty();
         } else {
             Optional<Integer> num = Optional.of(head.num);
-            head = null;
+            head = head.next;
             return num;
-
         }
     }
 
