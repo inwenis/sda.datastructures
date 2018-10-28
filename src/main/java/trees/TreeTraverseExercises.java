@@ -107,6 +107,44 @@ public class TreeTraverseExercises {
         return nodes;
     }
 
+    public static void coolPrint(SdaTree node) {
+        List<List<Integer>> nodesPerLevel = new ArrayList<>();
+        Queue<LevelNodePair> queue = new ArrayDeque<>();
+        queue.offer(new LevelNodePair(node, 0));
+        while(!queue.isEmpty()) {
+            LevelNodePair pair = queue.poll();
+            Optional<SdaTree> optionalCurrentNode = pair.node;
+            if(optionalCurrentNode.isPresent()) {
+                SdaTree currentNode = optionalCurrentNode.get();
+                int currentNodeLevel = pair.level;
+                if (nodesPerLevel.size() <= currentNodeLevel) {
+                    nodesPerLevel.add(new ArrayList<>());
+                }
+                nodesPerLevel.get(currentNodeLevel).add(currentNode.getValue());
+                Optional<SdaTree> optionalLeft = currentNode.getLeftChild();
+                Optional<SdaTree> optionalRight = currentNode.getRightChild();
+                if (optionalLeft.isPresent()) {
+                    queue.offer(new LevelNodePair(optionalLeft.get(), currentNodeLevel + 1));
+                } else {
+                    queue.offer(new LevelNodePair(null, currentNodeLevel + 1));
+                }
+                if (optionalRight.isPresent()) {
+                    queue.offer(new LevelNodePair(optionalRight.get(), currentNodeLevel + 1));
+                } else {
+                    queue.offer(new LevelNodePair(null, currentNodeLevel + 1));
+                }
+            }
+        }
+
+        for (List<Integer> level : nodesPerLevel) {
+            for (Integer num : level) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
     /**
      * Funkcja zwraca liczbę liści w podanym drzewie.
      */
