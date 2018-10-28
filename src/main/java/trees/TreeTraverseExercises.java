@@ -35,8 +35,18 @@ public class TreeTraverseExercises {
      *
      * Uwaga: metodę należy zaimplementować z wykorzystaniem rekurencji.
      */
-    public List<Integer> traverseInOrder(SdaTree tree) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static List<Integer> traverseInOrder(SdaTree node) {
+        List<Integer> nodes = new ArrayList<>();
+        if (node.getLeftChild().isPresent()) {
+            List<Integer> leftNodes = traverseInOrder(node.getLeftChild().get());
+            nodes.addAll(leftNodes);
+        }
+        nodes.add(node.getValue());
+        if (node.getRightChild().isPresent()) {
+            List<Integer> rightNodes = traverseInOrder(node.getRightChild().get());
+            nodes.addAll(rightNodes);
+        }
+        return nodes;
     }
 
     /**

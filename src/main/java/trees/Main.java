@@ -22,5 +22,11 @@ public class Main {
             System.out.print(n + " ");
         }
         System.out.println();
+
+        List<Integer> nodesInOrder = TreeTraverseExercises.traverseInOrder(exampleTree);
+        for (Integer n : nodesInOrder) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
     }
 }
