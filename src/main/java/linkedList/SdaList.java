@@ -1,3 +1,5 @@
+package linkedList;
+
 public interface SdaList {
 
     /**

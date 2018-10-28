@@ -1,8 +1,10 @@
+package linkedList;
+
 import java.util.NoSuchElementException;
 
 public class Main {
     public static void main(String[] args) {
-        // declare list as LinkedList instead of SdaList to use .toCoolString()
+        // declare list as linkedList.LinkedList instead of linkedList.SdaList to use .toCoolString()
         System.out.println("testing addLast()");
         addLastTest();
 
