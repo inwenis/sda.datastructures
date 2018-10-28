@@ -55,8 +55,18 @@ public class TreeTraverseExercises {
      *
      * Uwaga: metodę należy zaimplementować z wykorzystaniem rekurencji.
      */
-    public List<Integer> traversePostOrder(SdaTree tree) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static List<Integer> traversePostOrder(SdaTree node) {
+        List<Integer> nodes = new ArrayList<>();
+        if (node.getLeftChild().isPresent()) {
+            List<Integer> leftNodes = traversePostOrder(node.getLeftChild().get());
+            nodes.addAll(leftNodes);
+        }
+        if (node.getRightChild().isPresent()) {
+            List<Integer> rightNodes = traversePostOrder(node.getRightChild().get());
+            nodes.addAll(rightNodes);
+        }
+        nodes.add(node.getValue());
+        return nodes;
     }
 
     /**
