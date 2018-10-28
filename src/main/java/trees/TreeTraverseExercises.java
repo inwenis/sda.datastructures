@@ -3,6 +3,7 @@ package trees;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Zaimplementuj poniższe metody operujące na drzewie binarnym.
@@ -74,8 +75,18 @@ public class TreeTraverseExercises {
      *
      * Uwaga: metodę należy zaimplementować z wykorzystaniem stosu (bez rekurencji).
      */
-    public  List<Integer> traversePreOrderIterative(SdaTree tree) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static List<Integer> traversePreOrderIterative(SdaTree node) {
+        List<Integer> nodes = new ArrayList<>();
+        Stack<SdaTree> stack = new Stack<>();
+        stack.push(node);
+        while(!stack.isEmpty()) {
+            SdaTree currentNode = stack.pop();
+            nodes.add(currentNode.getValue());
+            // this is a fancy way of using Optional
+            currentNode.getLeftChild().ifPresent(stack::push);
+            currentNode.getRightChild().ifPresent(stack::push);
+        }
+        return nodes;
     }
 
     /**
