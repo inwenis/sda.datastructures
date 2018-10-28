@@ -47,5 +47,14 @@ public class Main {
         }
         System.out.println();
         System.out.println();
+
+
+        System.out.println("level order iterative");
+        List<Integer> nodesLevelOrder = TreeTraverseExercises.traverseLevelOrder(exampleTree);
+        for (Integer n : nodesLevelOrder) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
+        System.out.println();
     }
 }
