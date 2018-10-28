@@ -1,5 +1,7 @@
 package queue;
 
+import java.util.Optional;
+
 public class Queue {
 
     Node first;
@@ -13,6 +15,17 @@ public class Queue {
         } else {
             Node node = new Node(i);
             last.next = node;
+            last = node;
+        }
+    }
+
+    public Optional<Integer> dequeue() {
+        if(first == null) {
+            return Optional.empty();
+        } else {
+            Node x = first;
+            first = first.next;
+            return Optional.of(x.num);
         }
     }
     //enqueue/dequeue/peek/isEmpty
