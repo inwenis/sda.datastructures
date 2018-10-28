@@ -25,7 +25,22 @@ public class Queue {
         } else {
             Node x = first;
             first = first.next;
+            if(first == null) {
+                last = null;
+            }
             return Optional.of(x.num);
+        }
+    }
+
+    public boolean isEmpty() {
+        return first == null;
+    }
+
+    public Optional<Integer> peek() {
+        if(first == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(first.num);
         }
     }
     //enqueue/dequeue/peek/isEmpty

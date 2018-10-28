@@ -12,5 +12,18 @@ public class Main {
         System.out.println(q.dequeue().orElse(-1));
         System.out.println(q.dequeue().orElse(-1));
         System.out.println(q.dequeue().orElse(-1));
+
+        System.out.println("peek:");
+        System.out.println(q.peek().orElse(-1));
+        q.enqueue(13);
+        System.out.println(q.peek().orElse(-1));
+        q.enqueue(14);
+        q.enqueue(15);
+        System.out.println(q.dequeue().orElse(-1));
+        System.out.println(q.dequeue().orElse(-1));
+        System.out.println(q.dequeue().orElse(-1));
+        System.out.println(q.dequeue().orElse(-1));
+        System.out.println(q.dequeue().orElse(-1));
+
     }
 }
