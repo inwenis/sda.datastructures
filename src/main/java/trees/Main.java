@@ -1,5 +1,7 @@
 package trees;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         SdaTree exampleTree =
@@ -15,6 +17,10 @@ public class Main {
                                         SdaTree.leaf(7),
                                         null)));
 
-        TreeTraverseExercises.traversePreOrder(exampleTree);
+        List<Integer> nodes = TreeTraverseExercises.traversePreOrder(exampleTree);
+        for (Integer n : nodes) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
     }
 }

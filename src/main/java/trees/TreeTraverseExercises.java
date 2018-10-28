@@ -1,5 +1,6 @@
 package trees;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,8 +15,18 @@ public class TreeTraverseExercises {
      *
      * Uwaga: metodę należy zaimplementować z wykorzystaniem rekurencji.
      */
-    public static List<Integer> traversePreOrder(SdaTree tree) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static List<Integer> traversePreOrder(SdaTree node) {
+         List<Integer> nodes = new ArrayList<>();
+         nodes.add(node.getValue());
+         if (node.getLeftChild().isPresent()) {
+             List<Integer> leftNodes = traversePreOrder(node.getLeftChild().get());
+             nodes.addAll(leftNodes);
+         }
+         if (node.getRightChild().isPresent()) {
+             List<Integer> rightNodes = traversePreOrder(node.getRightChild().get());
+             nodes.addAll(rightNodes);
+         }
+         return nodes;
     }
 
     /**
