@@ -35,6 +35,10 @@ public class Stack {
         }
     }
 
+    public boolean isEmpty() {
+        return head == null;
+    }
+
     class Node {
         int num;
         Node next;

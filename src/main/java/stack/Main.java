@@ -39,5 +39,8 @@ public class Main {
         System.out.println(stack.pop().orElse(-1));
         System.out.println(stack.pop().orElse(-1));
         System.out.println(stack.pop().orElse(-1));
+        System.out.println(stack.isEmpty());
+        stack.push(123);
+        System.out.println(stack.isEmpty());
     }
 }
