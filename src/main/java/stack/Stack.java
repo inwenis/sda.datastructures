@@ -5,38 +5,38 @@ import java.util.Optional;
 public class Stack {
     // push/pop/peek/isEmpty
 
-    Node head = null;
+    Node top = null;
 
     public void push(int i) {
-        if(head == null) {
-            head = new Node(i);
+        if(top == null) {
+            top = new Node(i);
         } else {
             Node node = new Node(i);
-            node.next = head;
-            head = node;
+            node.next = top;
+            top = node;
         }
     }
 
     public Optional<Integer> pop() {
-        if(head == null) {
+        if(top == null) {
             return Optional.empty();
         } else {
-            Optional<Integer> num = Optional.of(head.num);
-            head = head.next;
+            Optional<Integer> num = Optional.of(top.num);
+            top = top.next;
             return num;
         }
     }
 
     public Optional<Integer> peek() {
-        if(head == null) {
+        if(top == null) {
             return Optional.empty();
         } else {
-            return Optional.of(head.num);
+            return Optional.of(top.num);
         }
     }
 
     public boolean isEmpty() {
-        return head == null;
+        return top == null;
     }
 
     class Node {
