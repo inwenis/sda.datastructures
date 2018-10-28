@@ -83,8 +83,8 @@ public class TreeTraverseExercises {
             SdaTree currentNode = stack.pop();
             nodes.add(currentNode.getValue());
             // this is a fancy way of using Optional
-            currentNode.getLeftChild().ifPresent(stack::push);
             currentNode.getRightChild().ifPresent(stack::push);
+            currentNode.getLeftChild().ifPresent(stack::push);
         }
         return nodes;
     }
