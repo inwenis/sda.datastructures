@@ -141,6 +141,9 @@ public class TreeTraverseExercises {
             }
         }
 
+        int lastLevelWithNode = nodesPerLevel.size() - 1;
+        int width = (int) Math.pow(2, lastLevelWithNode);
+
         for (List<Optional<Integer>> level : nodesPerLevel) {
             for (Optional<Integer> num : level) {
                 if(num.isPresent()) {
