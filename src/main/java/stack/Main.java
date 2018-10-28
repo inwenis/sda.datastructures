@@ -24,6 +24,7 @@ public class Main {
         stack.push(1);
         stack.push(10);
         stack.push(109);
+        System.out.println(stack.toCoolString());
         System.out.println(stack.pop().get());
         System.out.println(stack.pop().get());
         System.out.println(stack.pop().get());

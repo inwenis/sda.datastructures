@@ -39,6 +39,21 @@ public class Stack {
         return top == null;
     }
 
+    public String toCoolString() {
+        String coolString = "";
+        Node walker = top;
+        while (walker != null) {
+            String numberFormated = String.format("%3d", walker.num);
+            coolString += "+-----+\n" +
+                          "| " + numberFormated + " |\n" +
+                          "+-----+\n" +
+                          "   |   \n";
+
+            walker = walker.next;
+        }
+        return coolString;
+    }
+
     class Node {
         int num;
         Node next;
