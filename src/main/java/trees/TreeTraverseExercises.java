@@ -108,19 +108,19 @@ public class TreeTraverseExercises {
     }
 
     public static void coolPrint(SdaTree node) {
-        List<List<Integer>> nodesPerLevel = new ArrayList<>();
+        List<List<Optional<Integer>>> nodesPerLevel = new ArrayList<>();
         Queue<LevelNodePair> queue = new ArrayDeque<>();
         queue.offer(new LevelNodePair(node, 0));
         while(!queue.isEmpty()) {
             LevelNodePair pair = queue.poll();
             Optional<SdaTree> optionalCurrentNode = pair.node;
+            int currentNodeLevel = pair.level;
             if(optionalCurrentNode.isPresent()) {
                 SdaTree currentNode = optionalCurrentNode.get();
-                int currentNodeLevel = pair.level;
                 if (nodesPerLevel.size() <= currentNodeLevel) {
                     nodesPerLevel.add(new ArrayList<>());
                 }
-                nodesPerLevel.get(currentNodeLevel).add(currentNode.getValue());
+                nodesPerLevel.get(currentNodeLevel).add(Optional.ofNullable(currentNode.getValue()));
                 Optional<SdaTree> optionalLeft = currentNode.getLeftChild();
                 Optional<SdaTree> optionalRight = currentNode.getRightChild();
                 if (optionalLeft.isPresent()) {
@@ -133,12 +133,21 @@ public class TreeTraverseExercises {
                 } else {
                     queue.offer(new LevelNodePair(null, currentNodeLevel + 1));
                 }
+            } else {
+                if (nodesPerLevel.size() <= currentNodeLevel) {
+                    nodesPerLevel.add(new ArrayList<>());
+                }
+                nodesPerLevel.get(currentNodeLevel).add(Optional.empty());
             }
         }
 
-        for (List<Integer> level : nodesPerLevel) {
-            for (Integer num : level) {
-                System.out.print(num + " ");
+        for (List<Optional<Integer>> level : nodesPerLevel) {
+            for (Optional<Integer> num : level) {
+                if(num.isPresent()) {
+                    System.out.print(num.get() + " ");
+                } else {
+                    System.out.print("-" + " ");
+                }
             }
             System.out.println();
         }
