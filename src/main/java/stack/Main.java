@@ -29,5 +29,15 @@ public class Main {
         System.out.println(stack.pop().get());
         Optional<Integer> pop1 = stack.pop();
         System.out.println(pop1.isPresent() ? pop1.get() : "empty");
+
+        // this is how we use Optional "functional way"
+        System.out.println(stack.peek().orElse(-1));
+        stack.push(5);
+        System.out.println(stack.peek().orElse(-1));
+        stack.push(10);
+        System.out.println(stack.peek().orElse(-1));
+        System.out.println(stack.pop().orElse(-1));
+        System.out.println(stack.pop().orElse(-1));
+        System.out.println(stack.pop().orElse(-1));
     }
 }

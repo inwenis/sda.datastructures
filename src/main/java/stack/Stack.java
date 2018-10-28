@@ -27,6 +27,14 @@ public class Stack {
         }
     }
 
+    public Optional<Integer> peek() {
+        if(head == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(head.num);
+        }
+    }
+
     class Node {
         int num;
         Node next;
