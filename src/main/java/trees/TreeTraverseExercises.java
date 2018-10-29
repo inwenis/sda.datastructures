@@ -174,7 +174,7 @@ public class TreeTraverseExercises {
                     Integer parsedValue = Integer.parseInt(leftValue);
                     SdaTreeImpl node = new SdaTreeImpl(parsedValue, null, null);
                     parent.get().setLeftChild(node);
-                    queue.offer(Optional.ofNullable(node));
+                    queue.offer(Optional.of(node));
                 } else {
                     queue.offer(Optional.empty());
                 }
@@ -182,7 +182,7 @@ public class TreeTraverseExercises {
                     Integer parsedValue = Integer.parseInt(rightValue);
                     SdaTreeImpl node = new SdaTreeImpl(parsedValue, null, null);
                     parent.get().setRightChild(node);
-                    queue.offer(Optional.ofNullable(node));
+                    queue.offer(Optional.of(node));
                 }  else {
                     queue.offer(Optional.empty());
                 }
