@@ -195,15 +195,9 @@ public class TreeTraverseExercises {
     }
 
     public static SdaTree buildTree1_reverse(String input) {
-
         Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
-
-        List<String> levels = Arrays
-                .stream(input.split("\n"))
-                .sorted(Comparator.reverseOrder())
-                .collect(Collectors.toList());
-
-        String last = levels.get(levels.size() - 1);
+        String[] levels = input.split("\n");
+        String last = levels[levels.length - 1];
         String[] split = last.split(" ");
 
         for (int i = 0; i < split.length; i++) {
@@ -216,34 +210,29 @@ public class TreeTraverseExercises {
             }
         }
 
-        // skip first line as it's already processed
-        for (int i = levels.size() - 2; i >= 0; i--) {
-            String level = levels.get(i);
+        // skip last line as it's already processed
+        for (int i = levels.length - 2; i >= 0; i--) {
+            String level = levels[i];
             String[] values = level.split(" ");
-            for (int j = 0; j < values.length; j++) {
-                Optional<SdaTree> left = queue.poll();
-                Optional<SdaTree> right = queue.poll();
-                String value = values[j];
+            for (String value : values) {
+                Optional<SdaTree> leftOptional = queue.poll();
+                Optional<SdaTree> rightOptional = queue.poll();
 
-                if(value.equals("-")) {
+                SdaTree left = leftOptional.orElse(null);
+                SdaTree right = rightOptional.orElse(null);
+
+                if (value.equals("-")) {
                     queue.offer(Optional.empty());
                 } else {
                     int parsed = Integer.parseInt(value);
-                    if (left.isPresent() && right.isPresent()) {
-                        queue.offer(Optional.of(new SdaTreeImpl(parsed, left.get(), right.get())));
-                    } else if (left.isPresent()) {
-                        queue.offer(Optional.of(new SdaTreeImpl(parsed, left.get(), null)));
-                    } else if (right.isPresent()) {
-                        queue.offer(Optional.of(new SdaTreeImpl(parsed, null, right.get())));
-                    } else {
-                        queue.offer(Optional.of(new SdaTreeImpl(parsed, null, null)));
-                    }
+                    queue.offer(Optional.of(new SdaTreeImpl(parsed, left, right)));
                 }
             }
 
         }
 
-        return queue.poll().get();
+        Optional<SdaTree> root = queue.poll();
+        return root.orElse(null);
     }
 
     ////////////////////////////////////////////
