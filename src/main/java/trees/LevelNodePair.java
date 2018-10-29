@@ -4,10 +4,10 @@ import java.util.Optional;
 
 public class LevelNodePair {
     public final Optional<SdaTree> node;
-    public final int level;
+    public final int index;
 
-    public LevelNodePair(SdaTree node, int level) {
+    public LevelNodePair(SdaTree node, int index) {
         this.node = Optional.ofNullable(node);
-        this.level = level;
+        this.index = index;
     }
 }

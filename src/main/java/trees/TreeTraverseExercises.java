@@ -108,53 +108,66 @@ public class TreeTraverseExercises {
     }
 
     public static void coolPrint(SdaTree node) {
-        List<List<Optional<Integer>>> nodesPerLevel = new ArrayList<>();
+        Integer[] array = new Integer[100];
         Queue<LevelNodePair> queue = new ArrayDeque<>();
         queue.offer(new LevelNodePair(node, 0));
         while(!queue.isEmpty()) {
             LevelNodePair pair = queue.poll();
             Optional<SdaTree> optionalCurrentNode = pair.node;
-            int currentNodeLevel = pair.level;
+            int index = pair.index;
             if(optionalCurrentNode.isPresent()) {
                 SdaTree currentNode = optionalCurrentNode.get();
-                if (nodesPerLevel.size() <= currentNodeLevel) {
-                    nodesPerLevel.add(new ArrayList<>());
-                }
-                nodesPerLevel.get(currentNodeLevel).add(Optional.ofNullable(currentNode.getValue()));
+                array[index] = currentNode.getValue();
                 Optional<SdaTree> optionalLeft = currentNode.getLeftChild();
                 Optional<SdaTree> optionalRight = currentNode.getRightChild();
                 if (optionalLeft.isPresent()) {
-                    queue.offer(new LevelNodePair(optionalLeft.get(), currentNodeLevel + 1));
-                } else {
-                    queue.offer(new LevelNodePair(null, currentNodeLevel + 1));
+                    queue.offer(new LevelNodePair(optionalLeft.get(), 2 * index + 1));
                 }
                 if (optionalRight.isPresent()) {
-                    queue.offer(new LevelNodePair(optionalRight.get(), currentNodeLevel + 1));
-                } else {
-                    queue.offer(new LevelNodePair(null, currentNodeLevel + 1));
+                    queue.offer(new LevelNodePair(optionalRight.get(), 2 * index + 2));
                 }
-            } else {
-                if (nodesPerLevel.size() <= currentNodeLevel) {
-                    nodesPerLevel.add(new ArrayList<>());
-                }
-                nodesPerLevel.get(currentNodeLevel).add(Optional.empty());
             }
         }
 
-        int lastLevelWithNode = nodesPerLevel.size() - 1;
-        int width = (int) Math.pow(2, lastLevelWithNode);
+        int lastNonEmptyIndex = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] != null) {
+                lastNonEmptyIndex = i;
+            }
+        }
 
-        for (List<Optional<Integer>> level : nodesPerLevel) {
-            for (Optional<Integer> num : level) {
-                if(num.isPresent()) {
-                    System.out.print(num.get() + " ");
+        int maxLevel = log(lastNonEmptyIndex+1,2);
+        int width = (int) Math.pow(2, maxLevel);
+
+        Integer[][] arr = new Integer[maxLevel+1][width];
+
+        for (int i = 0; i <= lastNonEmptyIndex; i++) {
+            if (array[i] != null) {
+                int level = log(i+1,2);
+                int indexInLevel = (int) (i - Math.pow(2, level) + 1);
+                int nodesOnLevel = (int) Math.pow(2, level);
+                int x = width / (nodesOnLevel + 1) * (indexInLevel+1);
+                arr[level][x] = array[i];
+            }
+        }
+
+
+        for (int i = 0; i < maxLevel; i++) {
+            for (int j = 0; j < width; j++) {
+                if(arr[i][j] != null) {
+                    System.out.print(arr[i][j]);
                 } else {
-                    System.out.print("-" + " ");
+                    System.out.print("_");
                 }
             }
             System.out.println();
         }
 
+    }
+
+    static int log(int x, int base)
+    {
+        return (int) (Math.log(x) / Math.log(base));
     }
 
     /**
