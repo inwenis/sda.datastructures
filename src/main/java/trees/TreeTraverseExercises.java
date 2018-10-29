@@ -197,21 +197,12 @@ public class TreeTraverseExercises {
     public static SdaTree buildTree1_reverse(String input) {
         Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
         String[] levels = input.split("\n");
-        String last = levels[levels.length - 1];
-        String[] split = last.split(" ");
 
-        for (int i = 0; i < split.length; i++) {
-            String value = split[i];
-            if(value.equals("-")) {
-                queue.offer(Optional.empty());
-            } else {
-                int parsed = Integer.parseInt(value);
-                queue.offer(Optional.of(new SdaTreeImpl(parsed, null, null)));
-            }
+        for (int i = 0; i < Math.pow(2, levels.length); i++) {
+            queue.offer(Optional.empty());
         }
 
-        // skip last line as it's already processed
-        for (int i = levels.length - 2; i >= 0; i--) {
+        for (int i = levels.length - 1; i >= 0; i--) {
             String level = levels[i];
             String[] values = level.split(" ");
             for (String value : values) {
@@ -228,7 +219,6 @@ public class TreeTraverseExercises {
                     queue.offer(Optional.of(new SdaTreeImpl(parsed, left, right)));
                 }
             }
-
         }
 
         Optional<SdaTree> root = queue.poll();
