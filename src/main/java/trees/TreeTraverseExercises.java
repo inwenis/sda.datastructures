@@ -111,7 +111,7 @@ public class TreeTraverseExercises {
     public static List<String> coolPrint(SdaTree node) {
         Integer[] array = toArray(node);
 
-        int maxLevel = log(array.length + 2,2);
+        int maxLevel = log(array.length + 2,2) - 1;
         int width = (int) Math.pow(2, maxLevel) * 2 - 1;
 
         Integer[][] arr = new Integer[maxLevel+1][width];
@@ -136,7 +136,7 @@ public class TreeTraverseExercises {
 
         List<String> withEdges = new ArrayList<>();
 
-        for (int i = 0; i < maxLevel; i++) {
+        for (int i = 0; i < arr.length; i++) {
             String level = levelToString(width, arr[i]);
             withEdges.add(level);
             // add edges
