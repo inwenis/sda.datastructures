@@ -1,6 +1,7 @@
 package trees;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Zaimplementuj poniższe metody operujące na drzewie binarnym.
@@ -107,7 +108,7 @@ public class TreeTraverseExercises {
         return nodes;
     }
 
-    public static void coolPrint(SdaTree node) {
+    public static List<String> coolPrint(SdaTree node) {
         Integer[] array = toArray(node);
 
         int maxLevel = log(array.length + 2,2);
@@ -133,18 +134,52 @@ public class TreeTraverseExercises {
             arr[levelOfNode][x] = array[i];
         }
 
+        List<String> withEdges = new ArrayList<>();
 
         for (int i = 0; i < maxLevel; i++) {
-            for (int j = 0; j < width; j++) {
-                if(arr[i][j] != null) {
-                    System.out.print(arr[i][j]);
-                } else {
-                    System.out.print(" ");
+            String level = levelToString(width, arr[i]);
+            withEdges.add(level);
+            // add edges
+            int rowsForEdges = (int) Math.pow(2, maxLevel - i - 1);
+            char[][] edges = new char[rowsForEdges][width];
+            for (int j = 0; j < rowsForEdges; j++) {
+                for (int k = 0; k < width; k++) {
+                    edges[j][k] = ' ';
                 }
             }
-            System.out.println();
+            for (int j = 0; j < width; j++) {
+                if(arr[i][j] != null) {
+                    addEdges(edges, 0, j-1, j+1);
+                }
+            }
+            List<String> edgesAsStrings = Arrays.stream(edges)
+                    .map(String::new)
+                    .collect(Collectors.toList());
+            withEdges.addAll(edgesAsStrings);
         }
 
+        return withEdges;
+    }
+
+    private static void addEdges(char[][] edges, int y, int left, int right) {
+        if(edges.length - 1 == y) {
+            return;
+        }
+        edges[y][left] = '/';
+        edges[y][right] = '\\';
+        addEdges(edges, y + 1, --left, ++right);
+    }
+
+    private static String levelToString(int width, Integer[] integers) {
+        String level = "";
+        for (int j = 0; j < width; j++) {
+            if(integers[j] != null) {
+                level += integers[j];
+            } else {
+                level += " ";
+            }
+        }
+        return level;
     }
 
     private static Integer[] toArray(SdaTree node) {

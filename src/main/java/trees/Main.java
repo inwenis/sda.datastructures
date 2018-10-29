@@ -57,13 +57,19 @@ public class Main {
         System.out.println();
         System.out.println();
 
-        TreeTraverseExercises.coolPrint(exampleTree);
+        List<String> tree = TreeTraverseExercises.coolPrint(exampleTree);
+        for (String level : tree) {
+            System.out.println(level);
+        }
         System.out.println();
         SdaTree exampleTree2 =
                 SdaTree.of(8,
                         SdaTree.leaf(9),
                         SdaTree.leaf(5));
 
-        TreeTraverseExercises.coolPrint(exampleTree2);
+        tree = TreeTraverseExercises.coolPrint(exampleTree2);
+        for (String level : tree) {
+            System.out.println(level);
+        }
     }
 }
