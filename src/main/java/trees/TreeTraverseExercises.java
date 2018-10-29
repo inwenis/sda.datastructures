@@ -1,6 +1,7 @@
 package trees;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Zaimplementuj poniższe metody operujące na drzewie binarnym.
@@ -191,6 +192,58 @@ public class TreeTraverseExercises {
         }
 
         return root;
+    }
+
+    public static SdaTree buildTree1_reverse(String input) {
+
+        Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
+
+        List<String> levels = Arrays
+                .stream(input.split("\n"))
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+
+        String last = levels.get(levels.size() - 1);
+        String[] split = last.split(" ");
+
+        for (int i = 0; i < split.length; i++) {
+            String value = split[i];
+            if(value.equals("-")) {
+                queue.offer(Optional.empty());
+            } else {
+                int parsed = Integer.parseInt(value);
+                queue.offer(Optional.of(new SdaTreeImpl(parsed, null, null)));
+            }
+        }
+
+        // skip first line as it's already processed
+        for (int i = levels.size() - 2; i >= 0; i--) {
+            String level = levels.get(i);
+            String[] values = level.split(" ");
+            for (int j = 0; j < values.length; j++) {
+                Optional<SdaTree> left = queue.poll();
+                Optional<SdaTree> right = queue.poll();
+                String value = values[j];
+
+                if(value.equals("-")) {
+                    queue.offer(Optional.empty());
+                } else {
+                    int parsed = Integer.parseInt(value);
+                    if (left.isPresent() && right.isPresent()) {
+                        queue.offer(Optional.of(new SdaTreeImpl(parsed, left.get(), right.get())));
+                    } else if (left.isPresent()) {
+                        queue.offer(Optional.of(new SdaTreeImpl(parsed, left.get(), null)));
+                    } else if (right.isPresent()) {
+                        queue.offer(Optional.of(new SdaTreeImpl(parsed, null, right.get())));
+                    } else {
+                        queue.offer(Optional.of(new SdaTreeImpl(parsed, null, null)));
+                    }
+                }
+            }
+
+        }
+
+        return queue.poll().get();
     }
 
     ////////////////////////////////////////////

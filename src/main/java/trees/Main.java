@@ -91,5 +91,21 @@ public class Main {
         for (String level : tree) {
             System.out.println(level);
         }
+
+        treeFromString = TreeTraverseExercises
+                .buildTree1_reverse("9\n8 1\n8 - - 1\n- - - - - - - 1");
+
+        tree = TreePrinter.coolPrint(treeFromString);
+        for (String level : tree) {
+            System.out.println(level);
+        }
+
+        treeFromString = TreeTraverseExercises
+                .buildTree1_reverse("9\n8 7\n6 5 - 4\n- - 3 2 - - 1 -");
+
+        tree = TreePrinter.coolPrint(treeFromString);
+        for (String level : tree) {
+            System.out.println(level);
+        }
     }
 }
