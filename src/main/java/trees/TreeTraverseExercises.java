@@ -1,7 +1,6 @@
 package trees;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Zaimplementuj poniższe metody operujące na drzewie binarnym.
@@ -111,8 +110,25 @@ public class TreeTraverseExercises {
     /**
      * Funkcja zwraca liczbę liści w podanym drzewie.
      */
-    public int countLeaves(SdaTree tree) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static int countLeaves(SdaTree node) {
+        if(isLeaf(node)) {
+            return 1;
+        } else {
+            int count = 0;
+            if (node.getLeftChild().isPresent()) {
+                count += countLeaves(node.getLeftChild().get());
+            }
+            if (node.getRightChild().isPresent()) {
+                count += countLeaves(node.getRightChild().get());
+            }
+            return count;
+        }
+    }
+
+    private static boolean isLeaf(SdaTree node) {
+        boolean noChildOnLeft = !node.getLeftChild().isPresent();
+        boolean noChildOnRight = !node.getRightChild().isPresent();
+        return noChildOnLeft && noChildOnRight;
     }
 
     /**

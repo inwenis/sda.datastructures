@@ -71,5 +71,9 @@ public class Main {
         for (String level : tree) {
             System.out.println(level);
         }
+
+        int i = TreeTraverseExercises.countLeaves(exampleTree);
+        System.out.println("expected to be 4");
+        System.out.println("actual " + i);
     }
 }
