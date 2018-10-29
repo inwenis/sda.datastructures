@@ -57,7 +57,7 @@ public class Main {
         System.out.println();
         System.out.println();
 
-        List<String> tree = TreeTraverseExercises.coolPrint(exampleTree);
+        List<String> tree = TreePrinter.coolPrint(exampleTree);
         for (String level : tree) {
             System.out.println(level);
         }
@@ -67,7 +67,7 @@ public class Main {
                         SdaTree.leaf(9),
                         SdaTree.leaf(5));
 
-        tree = TreeTraverseExercises.coolPrint(exampleTree2);
+        tree = TreePrinter.coolPrint(exampleTree2);
         for (String level : tree) {
             System.out.println(level);
         }
