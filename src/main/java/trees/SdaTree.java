@@ -32,4 +32,8 @@ public interface SdaTree {
      * Zwraca prawe poddrzewo.
      */
     Optional<SdaTree> getRightChild();
+
+    void setLeftChild(SdaTree value);
+
+    void setRightChild(SdaTree value);
 }

@@ -8,8 +8,8 @@ import java.util.Optional;
 public class SdaTreeImpl implements SdaTree {
 
     private final Integer value;
-    private final SdaTree left;
-    private final SdaTree right;
+    private SdaTree left;
+    private SdaTree right;
 
     public SdaTreeImpl(Integer value, SdaTree left, SdaTree right) {
         this.value = Objects.requireNonNull(value, "value must not be null");
@@ -30,5 +30,15 @@ public class SdaTreeImpl implements SdaTree {
     @Override
     public Optional<SdaTree> getRightChild() {
         return Optional.ofNullable(right);
+    }
+
+    @Override
+    public void setLeftChild(SdaTree value) {
+        this.left = value;
+    }
+
+    @Override
+    public void setRightChild(SdaTree value) {
+        this.right = value;
     }
 }

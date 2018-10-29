@@ -75,5 +75,21 @@ public class Main {
         int i = TreeTraverseExercises.countLeaves(exampleTree);
         System.out.println("expected to be 4");
         System.out.println("actual " + i);
+
+        SdaTree treeFromString = TreeTraverseExercises
+                .buildTree1("9\n8 7\n6 5 - 4\n- - 3 2 - - 1 -");
+
+        tree = TreePrinter.coolPrint(treeFromString);
+        for (String level : tree) {
+            System.out.println(level);
+        }
+
+        treeFromString = TreeTraverseExercises
+                .buildTree1("9\n8 1\n8 - - 1\n- - - - - - - 1");
+
+        tree = TreePrinter.coolPrint(treeFromString);
+        for (String level : tree) {
+            System.out.println(level);
+        }
     }
 }

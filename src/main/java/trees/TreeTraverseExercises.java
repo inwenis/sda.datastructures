@@ -150,8 +150,47 @@ public class TreeTraverseExercises {
      *
      * @throws IllegalArgumentException jeśli któraś z linijek zawiera nieprawidłową ilość wartości
      */
-    public SdaTree buildTree1(String input) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static SdaTree buildTree1(String input) {
+
+        Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
+
+        String[] levels = input.split("\n");
+        Integer rootValue = Integer.parseInt(levels[0]);
+
+        SdaTreeImpl root = new SdaTreeImpl(rootValue, null, null);
+        queue.offer(Optional.ofNullable(root));
+
+        // skip first line as it's already processed
+        for (int i = 1; i < levels.length; i++) {
+            String level = levels[i];
+            String[] values = level.split(" ");
+            for (int j = 0; j < values.length; j+=2) {
+
+                Optional<SdaTree> parent = queue.poll();
+
+                String leftValue = values[j];
+                String rightValue = values[j+1];
+                if (!leftValue.equals("-")) {
+                    Integer parsedValue = Integer.parseInt(leftValue);
+                    SdaTreeImpl node = new SdaTreeImpl(parsedValue, null, null);
+                    parent.get().setLeftChild(node);
+                    queue.offer(Optional.ofNullable(node));
+                } else {
+                    queue.offer(Optional.empty());
+                }
+                if (!rightValue.equals("-")) {
+                    Integer parsedValue = Integer.parseInt(rightValue);
+                    SdaTreeImpl node = new SdaTreeImpl(parsedValue, null, null);
+                    parent.get().setRightChild(node);
+                    queue.offer(Optional.ofNullable(node));
+                }  else {
+                    queue.offer(Optional.empty());
+                }
+            }
+
+        }
+
+        return root;
     }
 
     ////////////////////////////////////////////
