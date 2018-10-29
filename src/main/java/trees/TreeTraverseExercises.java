@@ -162,7 +162,7 @@ public class TreeTraverseExercises {
     }
 
     private static void addEdges(char[][] edges, int y, int left, int right) {
-        if(edges.length - 1 == y) {
+        if(edges.length == y) {
             return;
         }
         edges[y][left] = '/';
