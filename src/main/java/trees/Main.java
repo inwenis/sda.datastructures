@@ -58,5 +58,12 @@ public class Main {
         System.out.println();
 
         TreeTraverseExercises.coolPrint(exampleTree);
+        System.out.println();
+        SdaTree exampleTree2 =
+                SdaTree.of(8,
+                        SdaTree.leaf(9),
+                        SdaTree.leaf(5));
+
+        TreeTraverseExercises.coolPrint(exampleTree2);
     }
 }

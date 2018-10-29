@@ -108,6 +108,46 @@ public class TreeTraverseExercises {
     }
 
     public static void coolPrint(SdaTree node) {
+        Integer[] array = toArray(node);
+
+        int maxLevel = log(array.length + 2,2);
+        int width = (int) Math.pow(2, maxLevel) * 2 - 1;
+
+        Integer[][] arr = new Integer[maxLevel+1][width];
+
+        int currentLevel = -1;
+        int baseOffset = 0;
+        int betweenNodes = 0;
+        for (int i = 0; i < array.length; i++) {
+            int levelOfNode = log(i+1,2);
+
+            if(levelOfNode != currentLevel) {
+                currentLevel = levelOfNode;
+                int childLevelCount = maxLevel - currentLevel;
+                baseOffset = (int) (Math.pow(2, childLevelCount) - 1);
+                betweenNodes = (int) (Math.pow(2, childLevelCount + 1) - 1);
+            }
+
+            int indexInLevel = (int) (i - Math.pow(2, levelOfNode) + 1);
+            int x = baseOffset + betweenNodes * indexInLevel + indexInLevel;
+            arr[levelOfNode][x] = array[i];
+        }
+
+
+        for (int i = 0; i < maxLevel; i++) {
+            for (int j = 0; j < width; j++) {
+                if(arr[i][j] != null) {
+                    System.out.print(arr[i][j]);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+
+    }
+
+    private static Integer[] toArray(SdaTree node) {
         Integer[] array = new Integer[100];
         Queue<LevelNodePair> queue = new ArrayDeque<>();
         queue.offer(new LevelNodePair(node, 0));
@@ -136,33 +176,9 @@ public class TreeTraverseExercises {
             }
         }
 
-        int maxLevel = log(lastNonEmptyIndex+1,2);
-        int width = (int) Math.pow(2, maxLevel);
+        Integer[] truncatedArray = Arrays.copyOf(array, lastNonEmptyIndex + 1);
 
-        Integer[][] arr = new Integer[maxLevel+1][width];
-
-        for (int i = 0; i <= lastNonEmptyIndex; i++) {
-            if (array[i] != null) {
-                int level = log(i+1,2);
-                int indexInLevel = (int) (i - Math.pow(2, level) + 1);
-                int nodesOnLevel = (int) Math.pow(2, level);
-                int x = width / (nodesOnLevel + 1) * (indexInLevel+1);
-                arr[level][x] = array[i];
-            }
-        }
-
-
-        for (int i = 0; i < maxLevel; i++) {
-            for (int j = 0; j < width; j++) {
-                if(arr[i][j] != null) {
-                    System.out.print(arr[i][j]);
-                } else {
-                    System.out.print("_");
-                }
-            }
-            System.out.println();
-        }
-
+        return truncatedArray;
     }
 
     static int log(int x, int base)
