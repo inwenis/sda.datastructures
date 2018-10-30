@@ -69,6 +69,7 @@ public class TreeHeap implements SdaHeap {
         }
     }
 
+    // removes `node` from heap and returns subTree which jumps into `node` place
     private Node takeOut(Node node) {
         Node replacement;
         if(node.left == null && node.right == null) {
