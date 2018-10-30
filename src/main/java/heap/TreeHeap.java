@@ -15,13 +15,28 @@ public class TreeHeap implements SdaHeap {
         }
         else {
             Node parent = findFreeNode();
+            Node newNode = new Node(element);
+            newNode.parent = parent;
             if(parent.left == null) {
-                parent.left = new Node(element);
+                parent.left = newNode;
             } else {
-                parent.right = new Node(element);
+                parent.right = newNode;
             }
+            repairHeap(newNode);
         }
-        //repairTree();
+    }
+
+    private void repairHeap(Node node) {
+        if(node != root && node.value > node.parent.value) {
+            swap(node, node.parent);
+            repairHeap(node.parent);
+        }
+    }
+
+    private void swap(Node node, Node parent) {
+        Integer temp = node.value;
+        node.value = parent.value;
+        parent.value = temp;
     }
 
     private Node findFreeNode() {
@@ -89,6 +104,7 @@ public class TreeHeap implements SdaHeap {
 
     class Node {
         Integer value;
+        Node parent;
         Node left;
         Node right;
 

@@ -12,11 +12,11 @@ public class Main {
 
         Integer[] heapAsArray = heap.toArray();
 
-        TreePrinter.coolPrint(heapAsArray)
-                .stream()
-                .forEach(System.out::println);
+        TreePrinter.coolPrint(heapAsArray);
 
         Integer pop = heap.pop();
-        System.out.println(pop);
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heapAsArray);
+
     }
 }

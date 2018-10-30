@@ -57,20 +57,14 @@ public class Main {
         System.out.println();
         System.out.println();
 
-        List<String> tree = TreePrinter.coolPrint(exampleTree);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(exampleTree);
         System.out.println();
         SdaTree exampleTree2 =
                 SdaTree.of(8,
                         SdaTree.leaf(9),
                         SdaTree.leaf(5));
 
-        tree = TreePrinter.coolPrint(exampleTree2);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(exampleTree2);
 
         int i = TreeTraverseExercises.countLeaves(exampleTree);
         System.out.println("expected to be 4");
@@ -79,34 +73,22 @@ public class Main {
         SdaTree treeFromString = TreeTraverseExercises
                 .buildTree1("9\n8 7\n6 5 - 4\n- - 3 2 - - 1 -");
 
-        tree = TreePrinter.coolPrint(treeFromString);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(treeFromString);
 
         treeFromString = TreeTraverseExercises
                 .buildTree1("9\n8 1\n8 - - 1\n- - - - - - - 1");
 
-        tree = TreePrinter.coolPrint(treeFromString);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(treeFromString);
 
         treeFromString = TreeTraverseExercises
                 .buildTree1_reverse("9\n8 1\n8 - - 1\n- - - - - - - 1");
 
-        tree = TreePrinter.coolPrint(treeFromString);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(treeFromString);
 
         treeFromString = TreeTraverseExercises
                 .buildTree1_reverse("9\n8 7\n6 5 - 4\n- - 3 2 - - 1 -");
 
-        tree = TreePrinter.coolPrint(treeFromString);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(treeFromString);
 
         try {
             // test with invalid input
@@ -122,9 +104,6 @@ public class Main {
         treeFromString = TreeTraverseExercises
                 .buildTree1_recursive("9\n8 7\n6 5 - 4\n- - 3 2 - - 1 -");
 
-        tree = TreePrinter.coolPrint(treeFromString);
-        for (String level : tree) {
-            System.out.println(level);
-        }
+        TreePrinter.coolPrint(treeFromString);
     }
 }
