@@ -73,14 +73,7 @@ public class TreeHeap implements SdaHeap {
         Node replacement;
         if(node.left == null && node.right == null) {
             replacement = null;
-            if (node != root && isLeftChild(node)) {
-                node.parent.left = null;
-            } else if (node != root && isRightChild(node)) {
-                node.parent.right = null;
-            } else if (node == root) {
-            } else {
-                throw new RuntimeException("this should not happen");
-            }
+            detachFromParent(node);
         } else if (node.left != null && node.right == null) {
             replacement = node.left;
             replace(node, replacement);
@@ -103,17 +96,25 @@ public class TreeHeap implements SdaHeap {
         return replacement;
     }
 
+    private void detachFromParent(Node node) {
+        if(node == root) {
+            // nop
+        } else if (isLeftChild(node)) {
+            node.parent.left = null;
+        } else if (isRightChild(node)) {
+            node.parent.right = null;
+        }
+    }
+
     private void replace(Node node, Node replacement) {
-        if (node != root && isLeftChild(node)) {
+        if(node == root) {
+            replacement.parent = null;
+        } else if (isLeftChild(node)) {
             node.parent.left = replacement;
             replacement.parent = node.parent;
-        } else if (node != root && isRightChild(node)) {
+        } else if (isRightChild(node)) {
             node.parent.right = replacement;
             replacement.parent = node.parent;
-        } else if (node == root) {
-            replacement.parent = null;
-        } else {
-            throw new RuntimeException("this should not happen");
         }
     }
 
