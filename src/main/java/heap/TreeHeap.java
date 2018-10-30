@@ -63,9 +63,68 @@ public class TreeHeap implements SdaHeap {
             return null;
         } else {
             Node temp = this.root;
-            root = null;
+            Node newRoot;
+            // change so that we only move values with out moving nodes
+            if (root.left == null && root.right == null) {
+                root = null;
+                return root.value;
+            } else if(root.left == null && root.right != null) {
+                newRoot = pop(root.right);
+            } else if (root.left != null && root.right == null) {
+                newRoot = pop(root.left);
+            } else if(root.left.value >= root.right.value) {
+                newRoot = pop(root.left);
+            } else {
+                newRoot = pop(root.right);
+            }
+            newRoot.left = root.left;
+            newRoot.right = root.right;
+            if(newRoot.left!=null)newRoot.left.parent = newRoot;
+            if(newRoot.right!=null)newRoot.right.parent = newRoot;
+            root = newRoot;
             return temp.value;
         }
+    }
+
+    private Node pop(Node node) {
+        Node replacement;
+        if(node.left == null && node.right == null) {
+
+            if(node.parent.left == node) {
+                node.parent.left = null;
+            } else {
+                node.parent.right = null;
+            }
+
+
+            return node;
+        } else if (node.left != null && node.right == null) {
+            replacement = pop(node.left);
+        } else if (node.left == null && node.right != null) {
+            replacement = pop(node.right);
+        } else if (node.left.value >= node.right.value) {
+            replacement = pop(node.left);
+        } else {
+            replacement = pop(node.right);
+        }
+        replacement.parent = node.parent;
+        if(node.parent.left == node) {
+            node.parent.left = replacement;
+        } else {
+            node.parent.right = replacement;
+        }
+        replacement.left = node.left;
+        replacement.right = node.right;
+        if(replacement.left != null) {
+            replacement.left.parent = replacement;
+        }
+        if(replacement.right != null) {
+            replacement.right.parent = replacement;
+        }
+        node.left = null;
+        node.right = null;
+        node.parent = null;
+        return node;
     }
 
     @Override

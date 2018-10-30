@@ -10,13 +10,19 @@ public class Main {
         heap.push(10);
         heap.push(1);
 
-        Integer[] heapAsArray = heap.toArray();
-
-        TreePrinter.coolPrint(heapAsArray);
+        TreePrinter.coolPrint(heap.toArray());
 
         Integer pop = heap.pop();
         System.out.println("heap.pop() returned: " + pop);
-        TreePrinter.coolPrint(heapAsArray);
+        TreePrinter.coolPrint(heap.toArray());
+
+        pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
+
+        pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
 
     }
 }
