@@ -152,25 +152,23 @@ public class TreeTraverseExercises {
      * @throws IllegalArgumentException jeśli któraś z linijek zawiera nieprawidłową ilość wartości
      */
     public static SdaTree buildTree1(String input) {
+        String[][] levels = Arrays.stream(input.split("\n"))
+                .map(line -> line.split("\\s+"))
+                .toArray(String[][]::new);
 
         Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
 
-        String[] levels = input.split("\n");
-        Integer rootValue = Integer.parseInt(levels[0]);
-
+        Integer rootValue = Integer.parseInt(levels[0][0]);
         SdaTreeImpl root = new SdaTreeImpl(rootValue, null, null);
-        queue.offer(Optional.ofNullable(root));
+        queue.offer(Optional.of(root));
 
         // skip first line as it's already processed
         for (int i = 1; i < levels.length; i++) {
-            String level = levels[i];
-            String[] values = level.split(" ");
-            for (int j = 0; j < values.length; j+=2) {
-
+            String[] level = levels[i];
+            for (int j = 0; j < level.length; j+=2) {
                 Optional<SdaTree> parent = queue.poll();
-
-                String leftValue = values[j];
-                String rightValue = values[j+1];
+                String leftValue = level[j];
+                String rightValue = level[j+1];
                 if (!leftValue.equals("-")) {
                     Integer parsedValue = Integer.parseInt(leftValue);
                     SdaTreeImpl node = new SdaTreeImpl(parsedValue, null, null);
@@ -188,9 +186,7 @@ public class TreeTraverseExercises {
                     queue.offer(Optional.empty());
                 }
             }
-
         }
-
         return root;
     }
 
