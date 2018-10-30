@@ -136,9 +136,7 @@ public class TreeHeap implements SdaHeap {
     public Integer[] toArray() {
         Integer[] array = new Integer[100];
         if(root != null) {
-            array[0] = root.value;
-            add(array, root.left, 1);
-            add(array, root.right, 2);
+            add(array, root, 0);
         }
 
         int lastNonEmptyIndex = 0;
