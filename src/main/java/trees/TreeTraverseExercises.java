@@ -1,7 +1,6 @@
 package trees;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Zaimplementuj poniższe metody operujące na drzewie binarnym.
@@ -231,6 +230,26 @@ public class TreeTraverseExercises {
 
         Optional<SdaTree> root = queue.poll();
         return root.orElse(null);
+    }
+
+    public static SdaTree buildTree1_recursive(String input) {
+        String[][] levels = Arrays.stream(input.split("\n"))
+                .map(line -> line.split("\\s+"))
+                .toArray(String[][]::new);
+        validate(levels);
+
+        return buildTree1_recursive(levels, 0, 0);
+    }
+
+    private static SdaTree buildTree1_recursive(String[][] levels, int level, int offset) {
+        if(level >= levels.length || levels[level][offset].equals("-")) {
+            return null;
+        }
+
+        Integer value = Integer.parseInt(levels[level][offset]);
+        return SdaTree.of(value,
+                buildTree1_recursive(levels, level + 1, offset * 2),
+                buildTree1_recursive(levels, level + 1, offset * 2 + 1));
     }
 
     ////////////////////////////////////////////

@@ -116,6 +116,15 @@ public class Main {
             System.out.println("below you should see an exception which is intentional");
             Thread.sleep(500);
             e.printStackTrace();
+            Thread.sleep(500);
+        }
+
+        treeFromString = TreeTraverseExercises
+                .buildTree1_recursive("9\n8 7\n6 5 - 4\n- - 3 2 - - 1 -");
+
+        tree = TreePrinter.coolPrint(treeFromString);
+        for (String level : tree) {
+            System.out.println(level);
         }
     }
 }
