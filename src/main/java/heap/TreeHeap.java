@@ -1,6 +1,7 @@
 package heap;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Queue;
 
 public class TreeHeap implements SdaHeap {
@@ -12,13 +13,14 @@ public class TreeHeap implements SdaHeap {
         if(root == null) {
             root = new Node(element);
         }
-        Node parent = findFreeNode();
-        if(parent.left == null) {
-            parent.left = new Node(element);
-        } else {
-            parent.right = new Node(element);
+        else {
+            Node parent = findFreeNode();
+            if(parent.left == null) {
+                parent.left = new Node(element);
+            } else {
+                parent.right = new Node(element);
+            }
         }
-
         //repairTree();
     }
 
@@ -58,7 +60,31 @@ public class TreeHeap implements SdaHeap {
 
     @Override
     public Integer[] toArray() {
-        return new Integer[0];
+        Integer[] array = new Integer[100];
+        if(root != null) {
+            array[0] = root.value;
+            add(array, root.left, 1);
+            add(array, root.right, 2);
+        }
+
+        int lastNonEmptyIndex = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] != null) {
+                lastNonEmptyIndex = i;
+            }
+        }
+
+        Integer[] truncatedArray = Arrays.copyOf(array, lastNonEmptyIndex + 1);
+
+        return truncatedArray;
+    }
+
+    private void add(Integer[] array, Node node, int index) {
+        if (node != null) {
+            array[index] = node.value;
+            add(array, node.left, index * 2 + 1);
+            add(array, node.right, index * 2 + 2);
+        }
     }
 
     class Node {

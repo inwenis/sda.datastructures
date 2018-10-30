@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 public class TreePrinter {
     public static List<String> coolPrint(SdaTree node) {
         Integer[] array = saveTreeInArray(node);
+        return coolPrint(array);
+    }
 
-        int maxLevel = log(array.length + 2,2) - 1;
+    public static List<String> coolPrint(Integer[] array) {
+        int maxLevel = log(array.length,2);
         int width = (int) Math.pow(2, maxLevel) * 2 - 1;
 
         Integer[][] arr = new Integer[maxLevel+1][width];
@@ -32,7 +35,6 @@ public class TreePrinter {
             withEdges.add(level);
             withEdges.addAll(edges);
         }
-
         return withEdges;
     }
 
