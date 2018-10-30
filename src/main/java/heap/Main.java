@@ -24,5 +24,8 @@ public class Main {
         System.out.println("heap.pop() returned: " + pop);
         TreePrinter.coolPrint(heap.toArray());
 
+        pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
     }
 }

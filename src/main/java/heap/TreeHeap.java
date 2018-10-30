@@ -62,69 +62,67 @@ public class TreeHeap implements SdaHeap {
         if(root == null) {
             return null;
         } else {
-            Node temp = this.root;
-            Node newRoot;
-            // change so that we only move values with out moving nodes
-            if (root.left == null && root.right == null) {
-                root = null;
-                return root.value;
-            } else if(root.left == null && root.right != null) {
-                newRoot = pop(root.right);
-            } else if (root.left != null && root.right == null) {
-                newRoot = pop(root.left);
-            } else if(root.left.value >= root.right.value) {
-                newRoot = pop(root.left);
-            } else {
-                newRoot = pop(root.right);
-            }
-            newRoot.left = root.left;
-            newRoot.right = root.right;
-            if(newRoot.left!=null)newRoot.left.parent = newRoot;
-            if(newRoot.right!=null)newRoot.right.parent = newRoot;
-            root = newRoot;
+            Node temp = root;
+            Node replacement = takeOut(root);
+            root = replacement;
             return temp.value;
         }
     }
 
-    private Node pop(Node node) {
+    private Node takeOut(Node node) {
         Node replacement;
         if(node.left == null && node.right == null) {
-
-            if(node.parent.left == node) {
+            replacement = null;
+            if (node != root && isLeftChild(node)) {
                 node.parent.left = null;
-            } else {
+            } else if (node != root && isRightChild(node)) {
                 node.parent.right = null;
+            } else if (node == root) {
+            } else {
+                throw new RuntimeException("this should not happen");
             }
-
-
-            return node;
         } else if (node.left != null && node.right == null) {
-            replacement = pop(node.left);
+            replacement = node.left;
+            replace(node, replacement);
         } else if (node.left == null && node.right != null) {
-            replacement = pop(node.right);
+            replacement = node.right;
+            replace(node, replacement);
         } else if (node.left.value >= node.right.value) {
-            replacement = pop(node.left);
+            replacement = node.left;
+            Node subTree = takeOut(replacement);
+            replacement.left = subTree;
+            replacement.right = node.right;
+            replace(node, replacement);
         } else {
-            replacement = pop(node.right);
+            replacement = node.right;
+            Node subTree = takeOut(replacement);
+            replacement.right = subTree;
+            replacement.left = node.left;
+            replace(node, replacement);
         }
-        replacement.parent = node.parent;
-        if(node.parent.left == node) {
+        return replacement;
+    }
+
+    private void replace(Node node, Node replacement) {
+        if (node != root && isLeftChild(node)) {
             node.parent.left = replacement;
-        } else {
+            replacement.parent = node.parent;
+        } else if (node != root && isRightChild(node)) {
             node.parent.right = replacement;
+            replacement.parent = node.parent;
+        } else if (node == root) {
+            replacement.parent = null;
+        } else {
+            throw new RuntimeException("this should not happen");
         }
-        replacement.left = node.left;
-        replacement.right = node.right;
-        if(replacement.left != null) {
-            replacement.left.parent = replacement;
-        }
-        if(replacement.right != null) {
-            replacement.right.parent = replacement;
-        }
-        node.left = null;
-        node.right = null;
-        node.parent = null;
-        return node;
+    }
+
+    private boolean isRightChild(Node node) {
+        return node.parent.right == node;
+    }
+
+    private boolean isLeftChild(Node node) {
+        return node.parent.left == node;
     }
 
     @Override
