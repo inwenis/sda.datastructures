@@ -1,5 +1,8 @@
 package heap;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class TreeHeap implements SdaHeap {
 
     Node root;
@@ -9,6 +12,32 @@ public class TreeHeap implements SdaHeap {
         if(root == null) {
             root = new Node(element);
         }
+        Node parent = findFreeNode();
+        if(parent.left == null) {
+            parent.left = new Node(element);
+        } else {
+            parent.right = new Node(element);
+        }
+
+        //repairTree();
+    }
+
+    private Node findFreeNode() {
+        Queue<Node> toVisit = new ArrayDeque<>();
+        toVisit.offer(root);
+
+        Node node = null;
+        while (!toVisit.isEmpty()) {
+            node = toVisit.poll();
+            if(node.left == null || node.right == null) {
+                break;
+            } else {
+                toVisit.offer(node.left);
+                toVisit.offer(node.right);
+            }
+        }
+
+        return node;
     }
 
     @Override
