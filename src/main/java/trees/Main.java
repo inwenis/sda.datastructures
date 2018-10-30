@@ -3,7 +3,7 @@ package trees;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SdaTree exampleTree =
                 SdaTree.of(8,
                         SdaTree.of(9,
@@ -106,6 +106,16 @@ public class Main {
         tree = TreePrinter.coolPrint(treeFromString);
         for (String level : tree) {
             System.out.println(level);
+        }
+
+        try {
+            // test with invalid input
+            treeFromString = TreeTraverseExercises
+                    .buildTree1("9\n8\n");
+        } catch (IllegalArgumentException e) {
+            System.out.println("below you should see an exception which is intentional");
+            Thread.sleep(500);
+            e.printStackTrace();
         }
     }
 }

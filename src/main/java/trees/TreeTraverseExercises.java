@@ -155,9 +155,8 @@ public class TreeTraverseExercises {
         String[][] levels = Arrays.stream(input.split("\n"))
                 .map(line -> line.split("\\s+"))
                 .toArray(String[][]::new);
-
+        validate(levels);
         Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
-
         Integer rootValue = Integer.parseInt(levels[0][0]);
         SdaTreeImpl root = new SdaTreeImpl(rootValue, null, null);
         queue.offer(Optional.of(root));
@@ -190,11 +189,21 @@ public class TreeTraverseExercises {
         return root;
     }
 
+    private static void validate(String[][] levels) {
+        for (int i = 0; i < levels.length; i++) {
+            String[] level = levels[i];
+            int expectedNodesCount = 1 << i; // the same as Math.pow(2, i)
+            if (level.length != expectedNodesCount) {
+                throw new IllegalArgumentException("Expected " + expectedNodesCount + " nodes on line " + i + " but got " + level.length);
+            }
+        }
+    }
+
     public static SdaTree buildTree1_reverse(String input) {
         String[][] levels = Arrays.stream(input.split("\n"))
                 .map(line -> line.split("\\s+"))
                 .toArray(String[][]::new);
-
+        validate(levels);
         Queue<Optional<SdaTree>> queue = new ArrayDeque<>();
 
         int leavesCount = (int) Math.pow(2, levels.length);
