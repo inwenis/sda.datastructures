@@ -166,7 +166,21 @@ public class TreeHeap implements SdaHeap {
 
     @Override
     public int size() {
-        return 0;
+        if(root == null) {
+            return 0;
+        } else {
+            int count = 1;
+            count += root.left != null ? size(root.left) : 0;
+            count += root.right != null ? size(root.right) : 0;
+            return count;
+        }
+    }
+
+    private int size(Node node) {
+        int count = 1;
+        count += node.left != null ? size(node.left) : 0;
+        count += node.right != null ? size(node.right) : 0;
+        return count;
     }
 
     @Override

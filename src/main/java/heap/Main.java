@@ -55,5 +55,20 @@ public class Main {
         pop2 = heap2.pop2();
         System.out.println("heap.pop() returned: " + pop2);
         TreePrinter.coolPrint(heap2.toArray());
+
+        System.out.println("-----------------Testing size()-------------------------------------");
+
+        TreeHeap heap3 = new TreeHeap();
+        System.out.println(heap3.size());
+        heap3.push(1);
+        System.out.println(heap3.size());
+        heap3.push(12);
+        System.out.println(heap3.size());
+        heap3.push(13);
+        System.out.println(heap3.size());
+        heap3.push(100);
+        System.out.println(heap3.size());
+        heap3.push(15);
+        TreePrinter.coolPrint(heap3.toArray());
     }
 }
