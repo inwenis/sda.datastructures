@@ -52,19 +52,19 @@ public class ArrayHeap implements SdaHeap {
 
     @Override
     public int size() {
-        return 0;
+        return toArray().length;
     }
 
     @Override
     public Integer[] toArray() {
-        int lastNonEmptyIndex = 0;
+        int lastNonEmptyIndex = -1;
         for (int i = 0; i < array.length; i++) {
             if(array[i] != null) {
                 lastNonEmptyIndex = i;
             }
         }
 
-        Integer[] truncatedArray = Arrays.copyOf(array, lastNonEmptyIndex + 1);
+        Integer[] truncatedArray = Arrays.copyOf(array, lastNonEmptyIndex+1);
         return truncatedArray;
     }
 }
