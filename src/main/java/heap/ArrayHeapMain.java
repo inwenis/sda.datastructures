@@ -15,25 +15,27 @@ public class ArrayHeapMain {
         TreePrinter.coolPrint(heap.toArray());
         heap.push(11);
         TreePrinter.coolPrint(heap.toArray());
+        heap.push(9);
+        TreePrinter.coolPrint(heap.toArray());
 
-//        System.out.println("-----------------Testing pop-------------------------------------");
-//
-//        Integer pop = heap.pop();
-//        System.out.println("heap.pop() returned: " + pop);
-//        TreePrinter.coolPrint(heap.toArray());
-//
-//        pop = heap.pop();
-//        System.out.println("heap.pop() returned: " + pop);
-//        TreePrinter.coolPrint(heap.toArray());
-//
-//        pop = heap.pop();
-//        System.out.println("heap.pop() returned: " + pop);
-//        TreePrinter.coolPrint(heap.toArray());
-//
-//        pop = heap.pop();
-//        System.out.println("heap.pop() returned: " + pop);
-//        TreePrinter.coolPrint(heap.toArray());
-//
+        System.out.println("-----------------Testing pop-------------------------------------");
+
+        Integer pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
+
+        pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
+
+        pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
+
+        pop = heap.pop();
+        System.out.println("heap.pop() returned: " + pop);
+        TreePrinter.coolPrint(heap.toArray());
+
 //        System.out.println("-----------------Testing pop2-------------------------------------");
 //
 //        TreeHeap heap2 = new TreeHeap();

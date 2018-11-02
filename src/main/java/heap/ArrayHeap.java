@@ -34,9 +34,20 @@ public class ArrayHeap implements SdaHeap {
         }
     }
 
+    // complexity wise this implementation is not optimal - it is O(n)
+    // replacing element with bigger child would be O(log n)
     @Override
     public Integer pop() {
-        return null;
+        Integer temp = array[0];
+        shiftLeft(array, 0);
+        return temp;
+    }
+
+    private void shiftLeft(Integer[] array, int i) {
+        for (; i < array.length - 1 ; i++) {
+            array[i] = array[i+1];
+        }
+        array[array.length - 1] = null;
     }
 
     @Override
