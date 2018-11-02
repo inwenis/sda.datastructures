@@ -4,10 +4,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TreePrinter {
-    public static List<String> coolPrint(SdaTree node) {
+    public static void coolPrint(SdaTree node) {
         Integer[] array = saveTreeInArray(node);
+        coolPrint(array);
+    }
 
-        int maxLevel = log(array.length + 2,2) - 1;
+    public static void coolPrint(Integer[] array) {
+        int maxLevel = log(array.length,2);
         int width = (int) Math.pow(2, maxLevel) * 2 - 1;
 
         Integer[][] arr = new Integer[maxLevel+1][width];
@@ -33,7 +36,7 @@ public class TreePrinter {
             withEdges.addAll(edges);
         }
 
-        return withEdges;
+        withEdges.forEach(System.out::println);
     }
 
     private static List<String> createEdges(int rowCount, Integer[] level) {
