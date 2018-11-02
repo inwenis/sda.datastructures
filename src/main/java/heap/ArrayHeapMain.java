@@ -6,10 +6,14 @@ public class ArrayHeapMain {
     public static void main(String[] args) {
         SdaHeap heap = new ArrayHeap();
         heap.push(4);
+        TreePrinter.coolPrint(heap.toArray());
         heap.push(5);
+        TreePrinter.coolPrint(heap.toArray());
         heap.push(10);
+        TreePrinter.coolPrint(heap.toArray());
         heap.push(1);
-
+        TreePrinter.coolPrint(heap.toArray());
+        heap.push(11);
         TreePrinter.coolPrint(heap.toArray());
 
 //        System.out.println("-----------------Testing pop-------------------------------------");
