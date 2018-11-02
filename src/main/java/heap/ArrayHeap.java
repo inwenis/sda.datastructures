@@ -12,20 +12,18 @@ public class ArrayHeap implements SdaHeap {
     }
 
     @Override
+    // complexity wise this implementation is not optimal - insertions are O(n)
+    // inserting element as the last element and swapping it with parent if necessary would be O(log n)
     public void push(Integer element) throws NotImplementedException {
-        if(array[0] == null) {
-            array[0] = element;
-        } else {
-            for (int i = 0; i < array.length; i++) {
-                if (array[i] == null) {
-                    array[i] = element;
-                    break;
-                }
-                if(element > array[i]) {
-                    shiftRight(array, i);
-                    array[i] = element;
-                    break;
-                }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                array[i] = element;
+                break;
+            }
+            if(element > array[i]) {
+                shiftRight(array, i);
+                array[i] = element;
+                break;
             }
         }
     }
