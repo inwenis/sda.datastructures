@@ -2,7 +2,7 @@ package heap;
 
 import trees.TreePrinter;
 
-public class Main {
+public class TreeHeapMain {
     public static void main(String[] args) {
         SdaHeap heap = new TreeHeap();
         heap.push(4);
