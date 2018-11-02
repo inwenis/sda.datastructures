@@ -12,6 +12,8 @@ public class Main {
 
         TreePrinter.coolPrint(heap.toArray());
 
+        System.out.println("-----------------Testing pop-------------------------------------");
+
         Integer pop = heap.pop();
         System.out.println("heap.pop() returned: " + pop);
         TreePrinter.coolPrint(heap.toArray());
@@ -27,5 +29,31 @@ public class Main {
         pop = heap.pop();
         System.out.println("heap.pop() returned: " + pop);
         TreePrinter.coolPrint(heap.toArray());
+
+        System.out.println("-----------------Testing pop2-------------------------------------");
+
+        TreeHeap heap2 = new TreeHeap();
+        heap2.push(4);
+        heap2.push(5);
+        heap2.push(10);
+        heap2.push(1);
+
+        TreePrinter.coolPrint(heap2.toArray());
+
+        Integer pop2 = heap2.pop2();
+        System.out.println("heap.pop() returned: " + pop2);
+        TreePrinter.coolPrint(heap2.toArray());
+
+        pop2 = heap2.pop2();
+        System.out.println("heap.pop() returned: " + pop2);
+        TreePrinter.coolPrint(heap2.toArray());
+
+        pop2 = heap2.pop2();
+        System.out.println("heap.pop() returned: " + pop2);
+        TreePrinter.coolPrint(heap2.toArray());
+
+        pop2 = heap2.pop2();
+        System.out.println("heap.pop() returned: " + pop2);
+        TreePrinter.coolPrint(heap2.toArray());
     }
 }

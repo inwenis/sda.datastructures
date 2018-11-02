@@ -57,6 +57,43 @@ public class TreeHeap implements SdaHeap {
         return node;
     }
 
+    // this is supposed to be a simpler pop()
+    public Integer pop2() {
+        if(root == null) {
+            return null;
+        } else {
+            Integer rootValue = root.value;
+            replaceWithChild(root);
+            return rootValue;
+        }
+    }
+
+    private void replaceWithChild(Node node) {
+        if(node.right != null && node.left != null) {
+            if(node.left.value >= node.right.value) {
+                node.value = node.left.value;
+                replaceWithChild(node.left);
+            } else {
+                node.value = node.right.value;
+                replaceWithChild(node.right);
+            }
+        } else if (node.left != null) {
+            node.value = node.left.value;
+            replaceWithChild(node.left);
+        } else if (node.right != null) {
+            node.value = node.right.value;
+            replaceWithChild(node.right);
+        } else { // both nodes are null
+            if (node == root) {
+                root = null;
+            } else if(isLeftChild(node)) {
+                node.parent.left = null;
+            } else {
+                node.parent.right = null;
+            }
+        }
+    }
+
     @Override
     public Integer pop() {
         if(root == null) {
