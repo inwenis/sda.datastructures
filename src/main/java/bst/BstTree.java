@@ -54,19 +54,7 @@ public class BstTree implements SdaBst {
             } else if (hasOnlyRightChild(root)) {
                 root = root.right;
             } else {
-                Node parentOfLeftMost = root;
-                Node leftMost = root.right;
-                while (leftMost.left != null ) {
-                    parentOfLeftMost = leftMost;
-                    leftMost = leftMost.left;
-                }
-                Node replacement = leftMost;
-                root.value = replacement.value;
-                if(isLeftChild(replacement, parentOfLeftMost)) {
-                    parentOfLeftMost.left = replacement.right;
-                } else {
-                    parentOfLeftMost.right = replacement.right;
-                }
+                removeNodeHaving2Children(root);
             }
         } else {
             if (isLeaf(nodeToBeRemoved)) {
@@ -88,20 +76,24 @@ public class BstTree implements SdaBst {
                     parent.right = nodeToBeRemoved.right;
                 }
             } else {
-                Node parentOfLeftMost = nodeToBeRemoved;
-                Node leftMost = nodeToBeRemoved.right;
-                while (leftMost.left != null ) {
-                    parentOfLeftMost = leftMost;
-                    leftMost = leftMost.left;
-                }
-                Node replacement = leftMost;
-                nodeToBeRemoved.value = replacement.value;
-                if(isLeftChild(replacement, parentOfLeftMost)) {
-                    parentOfLeftMost.left = replacement.right;
-                } else {
-                    parentOfLeftMost.right = replacement.right;
-                }
+                removeNodeHaving2Children(nodeToBeRemoved);
             }
+        }
+    }
+
+    private void removeNodeHaving2Children(Node toBeRemoved) {
+        Node parentOfLeftMost = toBeRemoved;
+        Node leftMost = toBeRemoved.right;
+        while (leftMost.left != null ) {
+            parentOfLeftMost = leftMost;
+            leftMost = leftMost.left;
+        }
+        Node replacement = leftMost;
+        toBeRemoved.value = replacement.value;
+        if(isLeftChild(replacement, parentOfLeftMost)) {
+            parentOfLeftMost.left = replacement.right;
+        } else {
+            parentOfLeftMost.right = replacement.right;
         }
     }
 
