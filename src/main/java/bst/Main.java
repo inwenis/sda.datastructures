@@ -25,26 +25,53 @@ public class Main {
         System.out.println("bst.contains(0)=" + bst.contains(0));
 
         System.out.println("-------------------- Testing delete ---------------------------");
+        bst = new BstTree();
+        bst.insert(1);
+        System.out.println("before delete:");
         TreePrinter.coolPrint(((BstTree) bst).toArray());
-
-        System.out.println("delete 4");
-        bst.delete(4);
-        TreePrinter.coolPrint(((BstTree) bst).toArray());
-
-        System.out.println("delete 7");
-        bst.delete(7);
-        TreePrinter.coolPrint(((BstTree) bst).toArray());
-
-        System.out.println("delete 2");
-        bst.delete(2);
-        TreePrinter.coolPrint(((BstTree) bst).toArray());
-
-        System.out.println("delete 1");
         bst.delete(1);
+        System.out.println("after delete:");
         TreePrinter.coolPrint(((BstTree) bst).toArray());
 
-        System.out.println("delete 9");
-        bst.delete(9);
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(2);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(1);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(2);
+        bst.insert(3);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(1);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(2);
+        bst.insert(0);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(1);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(3);
+        bst.insert(0);
+        bst.insert(2);
+        bst.insert(5);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(1);
+        System.out.println("after delete:");
         TreePrinter.coolPrint(((BstTree) bst).toArray());
     }
 }
