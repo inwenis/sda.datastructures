@@ -1,7 +1,5 @@
 package bst;
 
-import heap.TreeHeap;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,7 +32,15 @@ public class BstTree implements SdaBst {
 
     @Override
     public boolean contains(Integer element) {
-        return false;
+        Node traveler = root;
+        while (traveler != null && !traveler.value.equals(element)) {
+            if (element <= traveler.value) {
+                traveler = traveler.left;
+            } else {
+                traveler = traveler.right;
+            }
+        }
+        return traveler != null;
     }
 
     @Override

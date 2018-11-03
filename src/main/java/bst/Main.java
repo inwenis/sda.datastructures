@@ -17,5 +17,11 @@ public class Main {
 
         // cast to BstTree so we can access toArray() method which is not in the SdaBst interface
         TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("bst.contains(1)=" + bst.contains(1));
+        System.out.println("bst.contains(2)=" + bst.contains(2));
+        System.out.println("bst.contains(100)=" + bst.contains(100));
+        System.out.println("bst.contains(9)=" + bst.contains(9));
+        System.out.println("bst.contains(0)=" + bst.contains(0));
     }
 }
