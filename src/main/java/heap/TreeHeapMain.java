@@ -2,6 +2,9 @@ package heap;
 
 import trees.TreePrinter;
 
+import java.util.Date;
+import java.util.Random;
+
 public class TreeHeapMain {
     public static void main(String[] args) {
         SdaHeap heap = new TreeHeap();
@@ -70,5 +73,18 @@ public class TreeHeapMain {
         System.out.println(heap3.size());
         heap3.push(15);
         TreePrinter.coolPrint(heap3.toArray());
+
+        System.out.println("-----------------Testing heap sort---------------------------------");
+        TreeHeap heap4 = new TreeHeap();
+        Random random = new Random(new Date().getTime());
+        for (int i = 0; i < 20; i++) {
+            heap4.push(random.nextInt(10));
+        }
+        TreePrinter.coolPrint(heap4.toArray());
+
+        while (heap4.size() != 0) {
+            System.out.print(heap4.pop() + " ");
+        }
+
     }
 }
