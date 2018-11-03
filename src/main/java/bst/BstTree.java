@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BstTree implements SdaBst {
 
-    Node root;
+    private Node root;
 
     @Override
     public void insert(Integer element) {
@@ -58,7 +58,7 @@ public class BstTree implements SdaBst {
         Node right;
         Integer value;
 
-        public Node(Integer value) {
+        Node(Integer value) {
             this.value = value;
         }
     }
