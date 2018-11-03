@@ -73,5 +73,56 @@ public class Main {
         bst.delete(1);
         System.out.println("after delete:");
         TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(3);
+        bst.insert(0);
+        bst.insert(2);
+        bst.insert(5);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(0);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(3);
+        bst.insert(0);
+        bst.insert(2);
+        bst.insert(5);
+        bst.insert(4);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(5);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(3);
+        bst.insert(0);
+        bst.insert(2);
+        bst.insert(5);
+        bst.insert(9);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(5);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(3);
+        bst.insert(0);
+        bst.insert(2);
+        bst.insert(5);
+        bst.insert(9);
+        System.out.println("before delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        bst.delete(3);
+        System.out.println("after delete:");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
     }
 }
