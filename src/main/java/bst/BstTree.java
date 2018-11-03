@@ -1,5 +1,6 @@
 package bst;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -125,7 +126,18 @@ public class BstTree implements SdaBst {
 
     @Override
     public List<Integer> toList() {
-        return null;
+        List<Integer> sorted = new ArrayList<>();
+        traverseInOrder(root, sorted);
+        return sorted;
+    }
+
+    private void traverseInOrder(Node node, List<Integer> sorted) {
+        if(node == null) {
+            return;
+        }
+        traverseInOrder(node.left, sorted);
+        sorted.add(node.value);
+        traverseInOrder(node.right, sorted);
     }
 
     class Node {

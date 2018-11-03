@@ -2,6 +2,8 @@ package bst;
 
 import trees.TreePrinter;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         SdaBst bst = new BstTree();
@@ -124,5 +126,20 @@ public class Main {
         bst.delete(3);
         System.out.println("after delete:");
         TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("-------------------- Testing toList ---------------------------");
+        bst = new BstTree();
+        bst.insert(1);
+        bst.insert(3);
+        bst.insert(0);
+        bst.insert(2);
+        bst.insert(5);
+        bst.insert(9);
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+        List<Integer> sorted = bst.toList();
+        for (int i : sorted) {
+            System.out.print(i + ", ");
+        }
+
     }
 }
