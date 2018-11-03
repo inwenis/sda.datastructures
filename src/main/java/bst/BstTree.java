@@ -33,19 +33,99 @@ public class BstTree implements SdaBst {
     @Override
     public boolean contains(Integer element) {
         Node traveler = root;
-        while (traveler != null && !traveler.value.equals(element)) {
-            if (element <= traveler.value) {
-                traveler = traveler.left;
-            } else {
-                traveler = traveler.right;
-            }
-        }
+        traveler = getNodeWithValue(element, traveler);
         return traveler != null;
     }
 
     @Override
     public void delete(Integer element) {
+        Node traveler = getNodeWithValue(element, root);
+        Node parent = findParent(traveler, root);
+        if(traveler == null) {
+            return;
+        } else {
+            if(isLeaf(traveler) && isLeftChild(traveler, parent)) {
+                parent.left = null;
+            } else if(isLeaf(traveler) && !isLeftChild(traveler, parent)) {
+                parent.right = null;
+            } else if(traveler.left != null && traveler.right == null) {
+                if(isLeftChild(traveler, parent)) {
+                    parent.left = traveler.left;
+                } else {
+                    parent.right = traveler.left;
+                }
+            } else if(traveler.left == null && traveler.right != null) {
+                if(isLeftChild(traveler, parent)) {
+                    parent.left = traveler.right;
+                } else {
+                    parent.right = traveler.right;
+                }
+            } else {
+                traveler.value = traveler.right.value;
+                delete(traveler.right, traveler.right.value);
+            }
+        }
+    }
 
+    private void delete(Node startFrom, Integer element) {
+        Node traveler = getNodeWithValue(element, startFrom);
+        Node parent = findParent(traveler, root);
+
+        if(traveler == null) {
+            return;
+        } else {
+            if(isLeaf(traveler) && isLeftChild(traveler, parent)) {
+                parent.left = null;
+            } else if(isLeaf(traveler) && !isLeftChild(traveler, parent)) {
+                parent.right = null;
+            } else if(traveler.left != null && traveler.right == null) {
+                if(isLeftChild(traveler, parent)) {
+                    parent.left = traveler.left;
+                } else {
+                    parent.right = traveler.left;
+                }
+            } else if(traveler.left == null && traveler.right != null) {
+                if(isLeftChild(traveler, parent)) {
+                    parent.left = traveler.right;
+                } else {
+                    parent.right = traveler.right;
+                }
+            } else {
+                traveler.value = traveler.right.value;
+                delete(traveler.right, traveler.right.value);
+            }
+        }
+    }
+
+    private Node findParent(Node node, Node startFrom) {
+        if (startFrom == null) {
+            return null;
+        } else if(startFrom.left == node || startFrom.right == node) {
+            return startFrom;
+        } else {
+            Node left = findParent(node, startFrom.left);
+            Node right = findParent(node, startFrom.right);
+            return left != null ? left : right;
+        }
+    }
+
+    private Node getNodeWithValue(Integer element, Node startFrom) {
+        while (startFrom != null && !startFrom.value.equals(element)) {
+            if (element <= startFrom.value) {
+                startFrom = startFrom.left;
+            } else {
+                startFrom = startFrom.right;
+            }
+        }
+        return startFrom;
+    }
+
+    private boolean isLeftChild(Node child, Node parent) {
+        return child != root && parent.left == child;
+    }
+
+    private boolean isLeaf(Node traveler) {
+        return traveler.left == null && traveler.right == null;
     }
 
     @Override

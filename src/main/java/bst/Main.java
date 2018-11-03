@@ -23,5 +23,28 @@ public class Main {
         System.out.println("bst.contains(100)=" + bst.contains(100));
         System.out.println("bst.contains(9)=" + bst.contains(9));
         System.out.println("bst.contains(0)=" + bst.contains(0));
+
+        System.out.println("-------------------- Testing delete ---------------------------");
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("delete 4");
+        bst.delete(4);
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("delete 7");
+        bst.delete(7);
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("delete 2");
+        bst.delete(2);
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("delete 1");
+        bst.delete(1);
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
+
+        System.out.println("delete 9");
+        bst.delete(9);
+        TreePrinter.coolPrint(((BstTree) bst).toArray());
     }
 }
